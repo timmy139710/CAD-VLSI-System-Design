@@ -1,0 +1,14 @@
+#
+Lab xor symbol
+I1
+#
+Lab and2 symbol
+I0
+#ISCELL
+basic opin symbol
+PIN0
+PIN1
+#ISCELL
+basic ipin symbol
+PIN3
+PIN4

@@ -1,0 +1,2663 @@
+//  @(#) TSMC 0.13UM CALIBRE ERC/LVS COMMAND FILE V1.1b  Jun 9,2003
+//  @(#) FOR TSMC 0.13um LOGIC SALICIDE FSG IMD (1P8M,1.2V/3.3V) (CL013G)
+//  @(#) SPICE MODEL DOCUMENT:  T-013-LO-SP-010   1.1
+//  @(#) COMMAND FILE DOCUMENT: T-013-LO-SP-010-C1
+//***************************************************************************
+//
+// Sheet Resistance table
+VARIABLE  RVPSL  7.68		//  P+Poly resistor w/i Silicide (Width>=2um)
+VARIABLE  RVPSS  7.54		//  P+Poly resistor w/i Silicide (Width<2um)
+VARIABLE  RVNSL  7.32		//  N+Poly resistor w/i Silicide (Width>=2um)
+VARIABLE  RVNSS  7.18		//  N+Poly resistor w/i Silicide (Width<2um)
+VARIABLE  RVNIL  6.58		//  N+Diff resistor w/i Silicide (Width>=2um)
+VARIABLE  RVNIS  6.7		//  N+Diff resistor w/i Silicide (Width<2um)
+VARIABLE  RVND  72.75		//  N+Diff resistor w/o Silicide
+VARIABLE  RVPIL  7.2		//  P+Diff resistor w/i Silicide (Width>=2um)
+VARIABLE  RVPIS  7.32		//  P+Diff resistor w/i Silicide (Width<2um)
+VARIABLE  RVPD  145.87		//  P+Diff resistor w/o Silicide
+VARIABLE  RVWO  409		//  NWell resistor under OD
+VARIABLE  RVWR  1207		//  NWell resistor under STI
+VARIABLE  RVM1  0.087		//  Metal-1  resistor
+VARIABLE  RVM2  0.057		//  Metal-2  resistor
+VARIABLE  RVM3  0.057		//  Metal-3  resistor
+VARIABLE  RVM4  0.057		//  Metal-4  resistor
+VARIABLE  RVM5  0.057		//  Metal-5  resistor
+VARIABLE  RVM6  0.057		//  Metal-6  resistor
+VARIABLE  RVM7  0.057		//  Metal-7  resistor
+VARIABLE  RVME  0.02		//  Top Metal resistor
+VARIABLE  RVNR  265.09		//  N+Poly resistor w/o Silicide
+VARIABLE  RVPR  319.55		//  P+Poly resistor w/o Silicide
+VARIABLE  DWPI  -0.070e-6	//  P+Diff resistor w/i Silicide Delta_W
+VARIABLE  DWWR  0.451e-6	//  NWell resistor under STI Delta_W
+VARIABLE  DWNR  0.07157e-6	//  N+Poly resistor w/o Silicide Delta_W
+VARIABLE  DLNR  0.02051e-6	//  N+Poly resistor w/o Silicide Delta_L
+VARIABLE  DDNR  3.91E-05            //  N+Poly resistor w/o Silicide Rend0
+VARIABLE  DWWO  0.224e-6	//  NWell resistor under OD Delta_W
+VARIABLE  DWPR  0.07953e-6	//  P+Poly resistor w/o Silicide Delta_W
+VARIABLE  DLPR  0.04698e-6	//  P+Poly resistor w/o Silicide Delta_L
+VARIABLE  DDPR  1.01E-04           //  P+Poly resistor w/o Silicide Rend0
+VARIABLE  DWNS  -0.055e-6	//  N+Poly resistor w/i Silicide Delta_W
+VARIABLE  DWPS  -0.035e-6	//  P+Poly resistor w/i Silicide Delta_W
+VARIABLE  DWND  0.011e-6	        //  N+Diff resistor w/o Silicide Delta_W
+VARIABLE  DWPD  0.068e-6	//  P+Diff resistor w/o Silicide Delta_W
+VARIABLE  DWNI  -0.057e-6	//  N+Diff resistor w/i Silicide Delta_W
+// END VARIABLE SETTING
+//********************************************************************
+//*******************************
+// PROCESS VARIABLE SETTING
+#DEFINE GENERIC
+//*******************************
+//*******************************
+// RESISTANCE VALUE VARIABLE SETTING
+//#DEFINE ACCURACY
+//*******************************
+//*************************************************************************************************
+//
+// ***!!! NOTICE !!!***
+//
+//    This LVS file ,named as "LVS sheet resistance file", only contains the 
+// sheet resistance table which is corresponding to the sheet resistance value
+// specified in the spice model document. Please be aware of that this lvs file
+// can't be ran alone, otherwise you will get a syntax error message! 
+//    Another LVS rule file which is called the "LVS main deck" contains all
+// the LVS devices extraction, circuit comparsion and connectivity extraction
+// coding and also need the "LVS sheet restance file" for sheet resistance
+// reference.
+//    To obtain a complete LVS deck, you need to finish the following procedures.
+//
+// Procedures:
+//
+// 1. Please download the most update "LVS main deck" from TSMC-online system.
+//    Currently, the "LVS main deck" is packed together with the "LVS sheet 
+//    resistance file" in  TSMC 0.13UM LOGIC 1P8M SALICIDE 1.2V/2.5V FSG 
+//    IMD process (Doc. T-013-LO-SP-004-C1). This LVS main deck is for all 0.13um
+//    FSG process.
+//
+// 2. Starting to unpack the compressed file (from step 1) and choose the 
+//    "LVS main deck" base on the metalization option of your chip.
+//    (EX: 1P8M , 1P7M, 1P6M ......)
+//
+// 3. Under unix environment, using the unix command 'cat' to combine this
+//    deck (LVS sheet resistance file) with the "LVS main deck" chose in 
+//    step 2 to obtain the complete LVS deck.
+//
+//    EX: (assuming % is the unix prompt)
+//
+//    For 1P8M:
+//    %cat LVS_Calibre_0.13um_lo_1.2v+3.3v_FSG.11b LVS_Calibre_0.13um_1p8m.lvs > CL013G_1P8M.lvs
+//
+//    For 1P7M:
+//    %cat LVS_Calibre_0.13um_lo_1.2v+3.3v_FSG.11b LVS_Calibre_0.13um_1p7m.lvs > CL013G_1P7M.lvs
+//
+//    **where "LVS_Calibre_0.13um_lo_1.2v+3.3v_FSG.11b" is the "LVS sheet 
+//      resistance file" for all metalization processes (1P3M~1P8M)
+//    **"LVS_Calibre_0.13um_1p8m.lvs" is the "LVS main deck" for 1P8M process.
+//    **"LVS_Calibre_0.13um_1p7m.lvs" is the "LVS main deck" for 1P7M process.
+//
+//    As the result, CL013G_1P8M.lvs is the complete LVS command file for this process.
+//
+//    SPECIAL NOTICE:
+//
+//      1. Though the "LVS main deck" contains all the devices for TSMC 0.13um 
+//         processes, it dosen't mean that you can use all the deivces in your 
+//         desgin. For what kind of devices that can be used, please refered to 
+//         the Spice Model Card corresponded to your process.
+//      2. There is a variable setting for the accuracy of the resistance value.
+//         It will look like below in the file:
+//         //#DEFINE ACCURACY       ==> this means using simple and easy way to get the 
+//					resistance value r=rsh*L/W
+//					(This is the default setting)
+//	   If you want to get the more accuracy resistance value, you can un-comment the "//".
+//         It will look like below in the file:
+//         #DEFINE ACCURACY         ==> this means using accuracy way to get the resistance value.
+//
+//*************************************************************************************************
+// xCalibre/calibre  RC/LVS command file based on the follow calibre command file//
+/////////////////////////////////////////////////////////////////////////////////
+// 
+//0.13um LVS main deck V1.0a 
+// 
+//////////////////////////////////////////////////////////////////////////////// 
+// 
+// DISCLAIMER   
+// 
+// The information contained herein is provided by TSMC on an "AS IS" basis 
+// without any warranty, and TSMC has no obligation to support or otherwise 
+// maintain the information.  TSMC disclaims any representation that the 
+// information does not infringe any intellectual property rights or proprietary 
+// rights of any third parties.  There are no other warranties given by TSMC, 
+// whether express, implied or statutory, including, without limitation, implied 
+// warranties of merchantability and fitness for a particular purpose. 
+// 
+// STATEMENT OF USE 
+// 
+// This information contains confidential and proprietary information of TSMC. 
+// No part of this information may be reproduced, transmitted, transcribed, 
+// stored in a retrieval system, or translated into any human or computer 
+// language, in any form or by any means, electronic, mechanical, magnetic, 
+// optical, chemical, manual, or otherwise, without the prior written permission 
+// of TSMC.  This information was prepared for informational purpose and is for 
+// use by TSMC's customers only.  TSMC reserves the right to make changes in the 
+// information at any time and without notice. 
+// 
+//////////////////////////////////////////////////////////////////////////////// 
+// 
+//                           CHANGE HISTORY 
+//  
+//   Date     version   Who                      Description 
+// ---------- ------- --------- ------------------------------------------------- 
+//  
+// 02/08/2002  V0.1a  Kevin Liu   New created 
+//                    This deck includes all devices for 0.13um process 
+// 05/06/2002  V0.1b  Kevin Liu    
+//                    a) added MD and VIAD layers for RDL process 
+//                    b) seperated 1P7M/1P6M/1P5M/1P4M/1P3M into other decks 
+//                    c) modified psub generation way 
+//                    d) added SRAM NMOS [nch_sram] & PMOS [pch_sram] 
+//                    e) revise N+diffusion resistor NOT NWELL 
+//                    f) revise P+diffusion resistor AND NWELL 
+// 06/17/2002  V0.1c  Kevin Liu 
+//                    1) revise Device Description and formation 
+//		       SRAM PMOS [pch_sram]  remove DNW 
+//		       SRAM NMOS [nch_sram]  remove DNW 
+//                    2) revise Device Description 
+//		       all N+diffusion NOT NWELL 
+//		       all P+diffusion AND NWELL 
+// 07/30/2002  V0.1d  Kevin Liu 
+//                    1) added HVTSRM layer (60) for device nch_sram_hvt and pchpu_hvtsr_g 
+//                    2) nchpg_hvtsr_g and nchpd_hvtsr_g are use the same subtype nch_sram_hvt in the LVS deck 
+//                    3) revise the formation of the SRAM devices 
+//                    4) added README file 
+// 05/07/2003  V1.0a  Kevin Liu 
+//                    1) This deck is for LVS/RC combo deck. Please read README file first. 
+//                    2) added layer LVID(73) for Low_Power process Low_VT devices. 
+//                    3) revise the NMOS(N) AS or AD area which the diode_esd area is reduced. 
+//                    4) revise the Diode ESD formation. 
+//                    5) removed the BJT device for I/O 
+//                    6) Added variable to control resistance value accuracy. 
+//		       if turn ACCURACY variable: 
+//		       A) N+/P+ poly resistor w/o silicide: 
+//		          R = 2*Rend + Rpure 
+//			  Rend = Rend0/(W-DeltaW) 
+//			  Rpure = Rsh*(L-DeltaL)/W-DeltaW) 
+//                       B) N+/P+ poly resistor w/i silicide 
+//		          N+/P+ diff resistor w/i silicide 
+//			  N+/P+ diff resistor w/o silicide 
+//			  N_WELL under OD and N_WELL under STI: 
+//			  R = Rsh*L/(W-DeltaW) 
+//		       C) N+/P+ poly resistor w/i silicide 
+//		          N+/P+ diff resistor w/i silicide 
+//			  Above 4 types resistor will use different sheet resistance value 
+//			  which it depends on the resistance width >=2um or <2um. 
+// 11/27/2003  V1.0b  H.M.Tseng 
+//                    1) Modified the varactor device from MOS to user-define device. 
+//                      Added the four devices for varactor devices. 
+//                      NC1,NC2,PC1 and PC2. 
+//                    2) Added the poly text layer into LVS 
+//                    3) Added the Low-VT P+/NW and N+/PW diode 
+// 
+//////////////////////////////////////////////////////////////////////////////// 
+// 
+//                             DEVICE FORMULA 
+//	 CORE == 1.0v or 1.2v  
+//	 I/O  == 2.5v or 3.3v 
+//   --------------- ----------------------------- ---------------------------------- 
+//   NAME            DESCRIPTION                   DEVICE LAYER OPERATION 
+//   --------------- ----------------------------- ---------------------------------- 
+//   M[nch_sram]     CORE SRAM NMOS/DNW            ((NGATE-OD2-NTN)*DMSRM-HVTSRM-VTL_N-VTH_N) 
+//   M[nch_sram_hvt] CORE HVT_SRAM NMOS/DNW        ((NGATE-OD2-NTN)*DMSRM*HVTSRM-VTL_N-VTH_N) 
+//   M[NL]           CORE native device            ((NGATE-OD2)*NTN) 
+//   M[N]            CORE Nominal VT NMOS          ((NGATE-OD2-NTN)-DNW) 
+//   M[N1]           CORE Nominal VT NMOS/DNW      ((NGATE-OD2-NTN)*DNW) 
+//   M[N1LV]         CORE LOW-VT NMOS/DNW          ((NGATE-OD2-NTN)*DNW*VTL_N) 
+//   M[N1HV]         CORE HIGH-VT NMOS/DNW         ((NGATE-OD2-NTN)*DNW*VTH_N) 
+//   M[NLV]          CORE LOW-VT NMOS	         (NGATE-OD2-NTN-DNW*VTL_N) 
+//   M[NHV]          CORE High-VT NMOS             (NGATE-OD2-NTN-DNW*VTH_N) 
+//   M[NN]           I/O native device             ((NGATE*OD2)*NTN) 
+//   M[ND]           I/O Nominal VT NMOS           ((NGATE*OD2-NTN)-DNW) 
+//   M[N2]           I/O Nominal VT NMOS/DNW       ((NGATE*OD2-NTN)*DNW) 
+//   M[N2LV]         I/O LOW-VT NMOS/DNW           ((NGATE*OD2-NTN)*DNW*VTL_N) 
+//   M[NHL]          I/O LOW-VT NMOS	         (NGATE*OD2-NTN-DNW*VTL_N) 
+//   M[P]            CORE Nominal VT PMOS          (PGATE-OD2) 
+//   M[pch_sram]     CORE SRAM PMOS                (PGATE-OD2*DMSRM-HVTSRM-VTL_P-VTH_P) 
+//   M[pchpu_hvtsr_g] CORE HVT_SRAM PMOS           (PGATE-OD2*DMSRM*HVTSRM-VTL_P-VTH_P) 
+//   M[PLV]          CORE LOW-VT PMOS	         (PGATE-OD2*VTL_P) 
+//   M[PHV]          CORE High-VT PMOS             (PGATE-OD2*VTH_P) 
+//   M[PD]           I/O Nominal VT PMOS           (PGATE*OD2) 
+//   M[PHL]          I/O LOW-VT PMOS	         (PGATE*OD2*VTL_P) 
+////   M[C1]           Varactor on thin oxide        (VARGT-OD2) 
+////   M[C2]           Varactor on thick oxide       (VARGT*OD2) 
+//   R[WO]           N-Well resistor under OD      (NWDMY*NWELL*(OD*RPO)) 
+//   R[WR]           N-Well resister under STI     (NWDMY*NWELL-(OD*RPO)) 
+//   R[PR]           P+Poly resistor w/o Silicide  (RPDMY*POLYG*PP*RPO*RHDMY) 
+//   R[NR]           N+Poly resistor w/o Silicide  (RPDMY*POLYG*NP*RPO*RHDMY) 
+//   R[PS]           P+Poly resistor w/i Silicide  (RPDMY*POLYG*PP-RPO) 
+//   R[NS]           N+Poly resistor w/i Silicide  (RPDMY*POLYG*NP-RPO) 
+//   R[PD]           P+diff resistor w/o Silicide  (RPDMY*OD*PP*RPO*RHDMY*NWELL) 
+//   R[ND]           N+diff resistor w/o Silicide  (RPDMY*OD*NP*RPO*RHDMY-NWELL) 
+//   R[PI]           P+diff resistor w/i Silicide  (RPDMY*OD*PP-RPO*NWELL) 
+//   R[NI]           N+diff resistor w/i Silicide  (RPDMY*OD*NP-RPO-NWELL) 
+//   R[M1]           METAL1 resistor               (RMDMY*METAL1) 
+//   R[M2]           METAL2 resistor               (RMDMY*METAL2) 
+//   R[M3]           METAL3 resistor               (RMDMY*METAL3) 
+//   R[M4]           METAL4 resistor               (RMDMY*METAL4) 
+//   R[M5]           METAL5 resistor               (RMDMY*METAL5) 
+//   R[M6]           METAL6 resistor               (RMDMY*METAL6) 
+//   R[M7]           METAL7 resistor               (RMDMY*METAL7) 
+//   R[ME]           METAL8 resistor               (RMDMY*METAL8) 
+//   D[DP]           CORE diode P+/NW              (DIODMY*OD*PP-OD2*NWELL) 
+//   D[DN]           CORE diode N+/PW              (DIODMY*OD*NP-OD2*PSUB) 
+//   D[DW]           CORE diode NW/PW              (DIODMY*NWELL-OD2) 
+//   D[DPH]          CORE High-VT diode P+/NW      (DIODMY*OD*PP-OD2*NWELL*VTH_P) 
+//   D[DNH]          CORE High-VT diode N+/PW      (DIODMY*OD*NP-OD2*PSUB*VTH_N) 
+//   D[DPL]          CORE Low-VT diode P+/NW       (DIODMY*OD*PP-OD2*NWELL*VTL_P) 
+//   D[DNL]          CORE Low-VT diode N+/PW       (DIODMY*OD*NP-OD2*PSUB*VTL_N) 
+//   D[D1N]          CORE native diode N+/PW       (DIODMY*OD*NP-OD2*PSUB*NTN) 
+//   D[D1]           I/O diode P+/NW               (DIODMY*OD*PP*OD2*NWELL) 
+//   D[D2]           I/O diode N+/PW               (DIODMY*OD*NP*OD2*PSUB) 
+//   D[D3]           I/O diode NW/PW               (DIODMY*NWELL*OD2)    
+//   D[D2N]          I/O native diode N+/PW        (DIODMY*OD*NP*OD2*PSUB*NTN) 
+//   D[DB]           ESD diode                     ((((((((ESD3DMY ADN OD)  AND  
+//                                                 NIMP) AND RPO) NOT NWELL) NOT  
+//                                                 (POLY1 SIZE 0.2))) SIZE -0.8)  
+//                                                 SIZE 0.6) 				        
+//   Q[PV]           CORE PNP-BJT                  (BJTDMY*OD*PP-OD2*NWELL) 
+//   Q[P1]           I/O PNP-BJT                   (BJTDMY*OD*PP*OD2*NWELL) 
+//   Q[NV]           CORE NPN-BJT		         (BJTDMY*OD*NIMP*PWELL*DNW) 
+// 
+//   NC1             NMOS Varactor core            (VARGT-OD2) 
+//   NC2             NMOS Varactor I/O             (VARGT*OD2) 
+//   NP1             PMOS Varactor core            (PVARGT-OD2) 
+//   NP2             PMOS Varactor I/O             (PVARGT*OD2) 
+// 
+//   ----- ----------------------------- ---------------------------------- 
+//   * NGATE = OD * POLYG * NP - NWELL 
+//   * PGATE = OD * POLYG * PP * NWELL 
+//   * VARGT = OD * POLYG * NP * NWELL * VARDMY 
+// 
+//////////////////////////////////////////////////////////////////////////////// 
+// 
+// USER NOTES : 
+// 
+// 1) mnpg, mppg, ppvdd49, npvss49 are obtained in a DRC run, not LVS. 
+// 
+// 2) That there are two devices which are diode DNW_PSUB and PW_DNW doesn't be 
+//    implemented. 
+// 
+// 3) For Calibre "EDTEXT" file, use .INCLUDE strings.txt. 
+//        LAYOUT TEXT  "text string" [x] [y]  (layer num) (cell name) 
+// 
+// 4) Input layer 'OD' is defined as thin oxide (OD) area which would  
+//    be drawn by one generic od mask or by seperated N+OD and P+OD.  
+//    Remove layers in the 'OD' entries you don't want to use at  
+//    layer definition block. 
+// 
+// 5) Default setting for property check is 0%. Users should check with 
+//    IP/Designe providers for proper tolerance. 
+// 
+// 6) It's recommended to run Calibre LVS by hierarchical mode since false 
+//    errors have been encountered by only flat mode option '-lvs'. 
+// 
+// 7) Default property resolution for ambiguity is set to 32. It could be 
+//    necessary to increase this setting to resolve serious ambiguity. 
+//    Uncomment statement 'LVS PROPERTY RESOLUTION MAXIMUM' in this deck 
+//    to reset the capability of property resolution. 
+// 
+// 8) This deck default not to extracts MOS AS/AD property. To turn on the 
+//    extraction of MOS AS/AD property, please uncomment the line 
+//    "#DEFINE extract_as_ad". It would cause SEED PROMOTION, and pose 
+//    much overhead on layout netlist extraction, erc checks, and lvs comparison. 
+//  
+// 9) The Calbire version is v9.1_2.1 (Feb, 2002) 
+//////////////////////////////////////////////////////////////////////////////// 
+//LVS_GENERATOR_2003.10.03
+// LVS/RC switch option
+// --------------------
+//#define RC_DECK    //uncomment this line when this deck would be used as a RC command file
+//
+// LVS option
+// --------------------
+//#DEFINE extract_as_ad
+//
+//#########################################################################
+//# ENVIRONMENT SETTING                              
+//#########################################################################
+//LVS HEAP DIRECTORY "/tmp"
+#IFDEF RC_DECK
+ #DEFINE ACCURACY
+#ENDIF 
+
+LAYOUT PRIMARY "DEV_013S_NEW"
+LAYOUT PATH "/dsdhome/hmtseng/LVS_TSMC/013/ALL_PROCESS_COMBO_LVS_DECK/GDS/DEV_013S_NEW.gds"
+LAYOUT SYSTEM GDSII
+//LAYOUT PATH "layout.net"
+//LAYOUT SYSTEM SPICE
+
+SOURCE PRIMARY "DEV_013S_NEW"
+SOURCE PATH "DEV_013S_NEW.spi.runo"
+SOURCE SYSTEM SPICE
+
+DRC RESULTS DATABASE "calibre_drc.db" ASCII // ASCII or GDSII
+DRC SUMMARY REPORT "calibre_drc.sum"
+
+LVS REPORT "lvs.rep"
+LVS REPORT MAXIMUM 1000 // ALL
+
+#IFDEF RC_DECK
+//MASK RESULTS DATABASE NONE //"mask.db"
+#ELSE
+MASK RESULTS DATABASE NONE //"mask.db"
+#ENDIF
+
+#IFDEF RC_DECK
+//MASK SVDB DIRECTORY "svdb" QUERY
+#ELSE
+MASK SVDB DIRECTORY "svdb" QUERY
+#ENDIF
+LVS ISOLATE SHORTS YES
+LVS REPORT OPTION S
+
+PRECISION 1000
+RESOLUTION 1
+UNIT LENGTH U
+
+TEXT DEPTH PRIMARY
+PORT DEPTH PRIMARY
+
+FLAG SKEW YES
+FLAG OFFGRID YES
+
+LVS SPICE PREFER PINS	         YES
+LVS ABORT ON SUPPLY ERROR        NO
+LVS ALL CAPACITOR PINS SWAPPABLE YES
+LVS RECOGNIZE GATES              NONE
+LVS IGNORE PORTS                 NO
+LVS CHECK PORT NAMES             YES
+LVS REDUCE PARALLEL BIPOLAR      YES
+LVS REDUCE PARALLEL MOS          YES
+LVS REDUCE PARALLEL DIODES       YES
+LVS REDUCE PARALLEL CAPACITORS   YES
+LVS REDUCE PARALLEL RESISTORS    YES
+LVS REDUCE SERIES RESISTORS      YES      //Smashes series resistors
+LVS REDUCE SERIES CAPACITORS     YES      //Smashes series capacitors
+LVS REDUCE SPLIT GATES           NO       //Smashes MOS split-gates.
+//LVS FILTER UNUSED OPTION B D E O
+LVS FILTER UNUSED OPTION AB RC RE RG
+LVS PROPERTY RESOLUTION MAXIMUM 65536 // ALL
+
+// should be modify
+LAYOUT TOP LAYER M1 VIA1 M2 VIA2 M3 VIA3 M4 VIA4 M5 VIA5 M6 VIA6 M7 VIA7 M8
+VIRTUAL CONNECT COLON YES
+
+LVS POWER NAME "VD33" "AVDDB" "DVDD" "VDDG" "AVDDG" "AHVDD" "AVDDBG" "AHVDDB" "VDD5V" "DHVDD" "TAVDDPST" "TAVD33PST" "VDWELL" "AHVDDG" "AVDWELL" "AVDDR" "VDDSA" "TAVDD" "VDDPST" "TAVD33" "AHVDDR" "HVDDWELL" "AHVDDWELL" "VDD" "AVDD" 
+LVS GROUND NAME "DVSS" "VSSG" "AVSSG" "AHVSS" "AVSSBG" "AHVSSB" "DHVSS" "TAVSSPST" "AHVSSG" "AVSSR" "VS33" "TAVSS" "VSSPST" "VSSUB" "AVSSUB" "AHVSSR" "GND" "AGND" "HVSSUB" "VSS" "AHVSSUB" "AVSS" "AVSSB" 
+
+//#############################################
+//# MAPPING                                   #
+//#############################################
+#IFDEF LP
+LAYER LVID       73  //  FOR LOW_POWER Low_VT device
+ VTL_N = COPY LVID
+ VTL_P = COPY LVID
+#ENDIF
+LAYER HVTSRM     60  //  HVT SRAM
+LAYER DNW        1  //  DNW -- Deep N-Well
+LAYER NTN        11  //   Native Device Blocked Implant
+LAYER NWELL      3  //  NW -- N-Well
+LAYER OD         8  6  7  //  OD -- Thin Oxide
+LAYER OD2        15  //  OD2-- Thick Oxide
+LAYER PP         25  //  PP -- P+ S/D Implantation
+LAYER NP         26  //  NP -- N+ S/D Implantation
+LAYER POLYGX     17  //  PO -- Poly Si
+LAYER POLY2      18  //  P2 -- Poly 2
+#IFNDEF LP
+LAYER VTL_N      12  //  CORE Low VT NMOS
+#ENDIF
+#IFNDEF LP
+LAYER VTL_P      13  //  CORE Low VT PMOS
+#ENDIF
+LAYER VTH_N      67  //  CORE High VT NMOS
+LAYER VTH_P      68  //  CORE High VT PMOS
+LAYER CONT       30  //  CO -- Contact Window
+LAYER M1         31  //  M1 -- Metal-1
+LAYER VIA1       51  //  Via1 Hole
+LAYER M2         32  //  M2 -- Metal-2
+LAYER VIA2       52  //  Via2 Hole
+LAYER M3         33  //  M3 -- Metal-3
+LAYER VIA3       53  //  Via3 Hole
+LAYER M4         34  //  M4 -- Metal-4
+LAYER VIA4       54  //  Via4 Hole
+LAYER M5         35  //  M5 -- Metal-5
+LAYER VIA5       55  //  Via5 Hole
+LAYER M6         36  //  M6 -- Metal-6
+LAYER VIA6       56  //  Via6 Hole
+LAYER M7         37  //  M7 -- Metal-7
+LAYER VIA7       57  //  Via7 Hole
+LAYER M8         38  //  M8 -- Metal-8
+LAYER RPO        29  //  RPO-- Resist Protection Oxide
+LAYER ESD3DMY    147  //  ESD3DMY
+LAYER PSUB2      111  //  dummy layer for subtrate isolation
+LAYER RODMY      49  //  dummy layer to remove OD
+LAYER BJTDMY     110  //  dummy layer to form BJT
+LAYER DIODMY     119  //  dummy layer to form diode
+LAYER NWDMY      114  //  dummy layer to form N-Well resistor
+LAYER RPDMY      115  //  dummy layer to form OD/POLY resistor
+LAYER RMDMY      116  //  dummy layer to form METAL resistor
+LAYER VARDMY     143  //  dummy layer to form Varactor
+LAYER RHDMY      117  //  dummy layer to form diffusion and poly resistor
+LAYER DMSRM      50  //  dummy layer to form SRAM mos
+LAYER DUM1      300
+LAYER MAP 31 DATATYPE 1 300 //  dummy metal M1
+LAYER DUM2      301
+LAYER MAP 32 DATATYPE 1 301 //  dummy metal M2
+LAYER DUM3      302
+LAYER MAP 33 DATATYPE 1 302 //  dummy metal M3
+LAYER DUM4      303
+LAYER MAP 34 DATATYPE 1 303 //  dummy metal M4
+LAYER DUM5      304
+LAYER MAP 35 DATATYPE 1 304 //  dummy metal M5
+LAYER DUM6      305
+LAYER MAP 36 DATATYPE 1 305 //  dummy metal M6
+LAYER DUM7      306
+LAYER MAP 37 DATATYPE 1 306 //  dummy metal M7
+LAYER DUM8      307
+LAYER MAP 38 DATATYPE 1 307 //  dummy metal M8
+LAYER M1SLOT    308
+LAYER MAP 31 DATATYPE 2 308 //  M1 slot
+LAYER M2SLOT    309
+LAYER MAP 32 DATATYPE 2 309 //  M2 slot
+LAYER M3SLOT    310
+LAYER MAP 33 DATATYPE 2 310 //  M3 slot
+LAYER M4SLOT    311
+LAYER MAP 34 DATATYPE 2 311 //  M4 slot
+LAYER M5SLOT    312
+LAYER MAP 35 DATATYPE 2 312 //  M5 slot
+LAYER M6SLOT    313
+LAYER MAP 36 DATATYPE 2 313 //  M6 slot
+LAYER M7SLOT    314
+LAYER MAP 37 DATATYPE 2 314 //  M7 slot
+LAYER M8SLOT    315
+LAYER MAP 38 DATATYPE 2 315 //  M8 slot
+TEXT LAYER 131 ATTACH 131 metal1
+PORT LAYER TEXT 131
+TEXT LAYER 132 ATTACH 132 metal2
+PORT LAYER TEXT 132
+TEXT LAYER 133 ATTACH 133 metal3
+PORT LAYER TEXT 133
+TEXT LAYER 134 ATTACH 134 metal4
+PORT LAYER TEXT 134
+TEXT LAYER 135 ATTACH 135 metal5
+PORT LAYER TEXT 135
+TEXT LAYER 136 ATTACH 136 metal6
+PORT LAYER TEXT 136
+TEXT LAYER 137 ATTACH 137 metal7
+PORT LAYER TEXT 137
+TEXT LAYER 138 ATTACH 138 metal8
+PORT LAYER TEXT 138
+
+#IFNDEF RC_DECK
+LAYER MAP 149 TEXTTYPE 1 316
+TEXT LAYER 316 ATTACH 316 poly
+PORT LAYER TEXT 316
+#ENDIF
+
+#IFDEF RC_DECK
+TEXT LAYER 31 ATTACH 31 metal1
+PORT LAYER TEXT 31
+TEXT LAYER 32 ATTACH 32 metal2
+PORT LAYER TEXT 32
+TEXT LAYER 33 ATTACH 33 metal3
+PORT LAYER TEXT 33
+TEXT LAYER 34 ATTACH 34 metal4
+PORT LAYER TEXT 34
+TEXT LAYER 35 ATTACH 35 metal5
+PORT LAYER TEXT 35
+TEXT LAYER 36 ATTACH 36 metal6
+PORT LAYER TEXT 36
+TEXT LAYER 37 ATTACH 37 metal7
+PORT LAYER TEXT 37
+TEXT LAYER 38 ATTACH 38 metal8
+PORT LAYER TEXT 38
+TEXT LAYER 149 ATTACH 149 poly
+PORT LAYER TEXT 149
+TEXT LAYER 17 ATTACH 17 poly
+PORT LAYER TEXT 17
+#ENDIF
+//#############################################
+//# LOGIC OPERATION POOL                      #
+//#############################################
+
+//Form BULK layer
+DRC:1 = EXTENT
+BULK  = SIZE DRC:1 BY 1.0
+
+//* Define device -- nmos nch_sram
+#IFDEF RC_DECK
+POLYG = COPY POLYGX
+#ELSE
+POLYG = POLYGX INTERACT CONT
+#ENDIF
+rpolywo1 = POLYG AND RHDMY 
+rpolywo2 = rpolywo1 AND RPO 
+diffa = OD NOT RODMY 
+#IFDEF RC_DECK
+diff = COPY diffa
+#ELSE
+diff = diffa INTERACT CONT
+#ENDIF
+rp1 = RPDMY NOT INTERACT diff 
+p1rdum = rp1 INTERACT POLYG  //  poly1 resistor dummy
+rpolywo = rpolywo2 INTERACT p1rdum 
+poly1 = POLYG NOT rpolywo 
+rpoly1 = POLYG AND p1rdum 
+rpoly = rpoly1 NOT INTERACT RPO 
+poly = poly1 NOT rpoly  //  POLY interconnect
+rodwo1 = diff AND RHDMY 
+rodwo2 = rodwo1 AND RPO 
+drdum = RPDMY INTERACT diff  //  diff resistor dummy
+rodwo = rodwo2 INTERACT drdum 
+mdiff1 = diff NOT rodwo 
+rod1 = diff AND drdum 
+rod = rod1 NOT INTERACT RPO 
+mdiff = mdiff1 NOT rod 
+gate1 = poly AND mdiff 
+gate_s1 = gate1 AND DMSRM 
+nxwell = NWELL NOT NWDMY  //  define N_well region
+gatennw_s = gate_s1 NOT nxwell  //  gate not inside nwell
+ngate_s1 = gatennw_s AND NP 
+ngate_s2 = ngate_s1 NOT OD2 
+ngate_s3 = ngate_s2 NOT VTH_N 
+ngate_s4 = ngate_s3 NOT VTL_N 
+ngate_s = ngate_s4 NOT HVTSRM  //  SRAM NMOS
+
+//***** Define connectivity/via layer -- tndiff ****
+nthin1 = mdiff AND NP  //  define N+ thin oxide
+ydio_a = ESD3DMY AND OD 
+ydio_c = SIZE ydio_a BY -0.2 
+ydio_d = ydio_c AND NP 
+ydio_e = ydio_d AND RPO 
+ydio_f = ydio_e NOT NWELL 
+ydio_g = ESD3DMY AND POLYG 
+ydio_h = SIZE ydio_g BY 0.2 
+ydio_i = ydio_f NOT ydio_h 
+ydio_j = SIZE ydio_i BY -0.7 
+ydio = SIZE ydio_j BY 0.5 
+nthin = nthin1 NOT ydio 
+tndiff = nthin NOT gate1  //  define N+ diffusion region
+
+//***** Define connectivity/via layer -- psub ****
+ppsub = BULK NOT NWELL  //  define total p_sub region
+psub2s = SIZE PSUB2 BY 0.01 
+psubband = psub2s NOT PSUB2  //  psub separator band (doughnut).
+psub = ppsub NOT psubband 
+
+//* Define device -- nmos nch_sram_hvt
+ngate_s_hvt = ngate_s4 AND HVTSRM  //  HVT SRAM NMOS
+
+//* Define device -- nmos NL
+gate = gate1 NOT DMSRM 
+gatennw = gate NOT nxwell  //  gate not inside nwell
+tngate1 = gatennw AND NP 
+tngate2 = tngate1 NOT OD2 
+nlgate1 = tngate2 AND NTN 
+nlgate2 = nlgate1 NOT VTL_N 
+nlgate3 = nlgate2 NOT VTH_N 
+nlgate = nlgate3 NOT DNW  //  CORE Native Devies
+
+//* Define device -- nmos N
+tngate3 = tngate2 NOT NTN 
+tngate4 = tngate3 NOT DNW 
+nlvgate = tngate4 AND VTL_N  //  CORE LOW_VT NMOS
+ngate1 = tngate4 NOT nlvgate 
+nhvgate = tngate4 AND VTH_N  //  CORE HIGH_VT NMOS
+ngate = ngate1 NOT nhvgate  //  CORE NMOS
+
+//* Define device -- nmos N1
+tdgate1 = tngate3 AND DNW 
+n1lvgate = tdgate1 AND VTL_N  //  CORE LOW_VT NMOS on DNW
+nrgate1 = tdgate1 NOT n1lvgate 
+n1hvgate = tdgate1 AND VTH_N  //  CORE HIGH_VT NMOS on DNW
+nrgate = nrgate1 NOT n1hvgate  //  CORE NMOS on DNW
+
+//* Define device -- nmos NN
+bngate1 = tngate1 AND OD2 
+bnngate1 = bngate1 AND NTN 
+bnngate2 = bnngate1 NOT VTL_N 
+bnngate = bnngate2 NOT DNW  //  I/O Native Devices
+
+//* Define device -- nmos ND
+bngate2 = bngate1 NOT NTN 
+bngate3 = bngate2 NOT DNW 
+bngate = bngate3 NOT VTL_N  //  I/O NMOS
+
+//* Define device -- nmos N2
+bndgate = bngate2 AND DNW 
+bnrgate = bndgate NOT VTL_N  //  I/O NMOS on DNW
+
+//* Define device -- nmos N2LV
+bndlvgate = bndgate AND VTL_N  //  I/O LOW_VT NMOS on DNW
+
+//* Define device -- nmos NHL
+bnlvgate = bngate3 AND VTL_N  //  I/O LOW_VT NMOS
+
+//* Define device -- pmos pch_sram
+gatenw_s = gate_s1 AND nxwell  //  gate inside nwell
+pgate_s1 = gatenw_s AND PP 
+pgate_s2 = pgate_s1 NOT OD2 
+pgate_s3 = pgate_s2 NOT VTH_P 
+pgate_s4 = pgate_s3 NOT VTL_P 
+pgate_s = pgate_s4 NOT HVTSRM  //  SRAM PMOS
+
+//***** Define connectivity/via layer -- tpdiff ****
+pthin = mdiff AND PP  //  define P+ thin oxide
+tpdiff = pthin NOT gate1  //  define P+ diffusion region
+
+//* Define device -- pmos pchpu_hvtsr_g
+pgate_s_hvt = pgate_s4 AND HVTSRM  //  HVT SRAM PMOS
+
+//* Define device -- pmos P
+gatenw = gate AND nxwell  //  gate inside nwell
+tpgate1 = gatenw AND PP 
+tpgate2 = tpgate1 NOT OD2 
+plvgate = tpgate2 AND VTL_P  //  CORE LOW_VT PMOS
+pgate1 = tpgate2 NOT plvgate 
+phvgate = tpgate2 AND VTH_P  //  CORE HIGH_VT PMOS
+pgate = pgate1 NOT phvgate  //  CORE PMOS
+
+//* Define device -- pmos PD
+bpgate1 = tpgate1 AND OD2 
+bpgate = bpgate1 NOT VTL_P  //  I/O PMOS
+
+//* Define device -- pmos PHL
+bplvgate = bpgate1 AND VTL_P  //  I/O LOW_VT PMOS
+
+//* Define device -- diode DP
+pdio1 = tpdiff AND DIODMY 
+pdio2 = pdio1 AND nxwell 
+pdio3 = pdio2 NOT OD2 
+cpdio1 = pdio3 NOT VTH_P 
+cpdio = cpdio1 NOT VTL_P  //  CORE P+/NW DIODE
+
+//* Define device -- diode DN
+ndio1 = tndiff AND DIODMY 
+ndio2 = ndio1 AND psub 
+ndio3 = ndio2 NOT OD2 
+ndio4 = ndio3 NOT NTN 
+cndio1 = ndio4 NOT VTH_N 
+cndio = cndio1 NOT VTL_N  //  CORE N+/PW DIODE
+
+//* Define device -- diode DW
+DIONW = DIODMY OUTSIDE tpdiff 
+nwdio1 = nxwell AND DIONW 
+cnwdio = nwdio1 NOT OD2  //  CORE NW/PW diode
+
+//* Define device -- diode DPH
+pdioh = pdio3 AND VTH_P  //  CORE P+/NW HIGH_VT DIODE
+
+//* Define device -- diode DNH
+ndioh = ndio4 AND VTH_N  //  CORE N+/PW HIGH_VT DIODE
+
+//* Define device -- diode DPL
+pdiol = pdio3 AND VTL_P  //  CORE P+/NW Low_VT DIODE
+
+//* Define device -- diode DNL
+ndiol = ndio4 AND VTL_N  //  CORE N+/PW Low_VT DIODE
+
+//* Define device -- diode D1N
+nndio1 = ndio3 AND NTN 
+cndion1 = nndio1 NOT VTH_N 
+cndion = cndion1 NOT VTL_N  //  CORE N+/PW Native DIODE
+
+//* Define device -- diode D1
+ipdio = pdio2 AND OD2  //  I/O  P+/NW DIODE
+
+//* Define device -- diode D2
+indio1 = ndio2 AND OD2 
+indio = indio1 NOT NTN  //  I/O N+/PW DIODE
+
+//* Define device -- diode D3
+inwdio = nwdio1 AND OD2  //  I/O NW/PW diode
+
+//* Define device -- diode D2N
+indion = indio1 AND NTN  //  I/O N+/PW Native DIODE
+
+//***** Define connectivity/via layer -- cemit1 ****
+ttdiff = tpdiff AND BJTDMY 
+nbase1 = nxwell AND BJTDMY  //  define BJT[PV] base terminal
+cemit1 = ttdiff AND nbase1  //  define BJT[PV] emitter
+
+//***** Define connectivity/via layer -- coll1 ****
+collsur = psub TOUCH nbase1 
+coll1 = collsur OR nbase1  //  define BJT[PV] collector
+
+//***** Define connectivity/via layer -- cnemit1 ****
+npnrg = DNW AND BJTDMY  //  define NPN region
+nndiff = tndiff AND npnrg 
+pbase1 = psub AND npnrg  //  define BJT[NV] base terminal
+cnemit1 = nndiff AND pbase1  //  define BJT[NV] emitter
+
+//***** Define connectivity/via layer -- ncoll1 ****
+ncollrg = nxwell AND npnrg 
+ncolls = ncollrg TOUCH pbase1 
+ncoll1 = ncolls OR pbase1  //  define BJT[NV] collector
+
+//* Define device -- r M1
+M1X = M1 OR DUM1 
+M1Y = M1X NOT M1SLOT 
+mt1res = M1Y AND RMDMY  //  metal1 resistor
+
+//***** Define connectivity/via layer -- metal1 ****
+metal1 = M1Y NOT mt1res  //  metal1 interconnect
+
+//* Define device -- r M2
+M2X = M2 OR DUM2 
+M2Y = M2X NOT M2SLOT 
+mt2res = M2Y AND RMDMY  //  metal2 resistor
+
+//***** Define connectivity/via layer -- metal2 ****
+metal2 = M2Y NOT mt2res  //  metal2 interconnect
+
+//* Define device -- r M3
+M3X = M3 OR DUM3 
+M3Y = M3X NOT M3SLOT 
+mt3res = M3Y AND RMDMY  //  metal3 resistor
+
+//***** Define connectivity/via layer -- metal3 ****
+metal3 = M3Y NOT mt3res  //  metal3 interconnect
+
+//* Define device -- r M4
+M4X = M4 OR DUM4 
+M4Y = M4X NOT M4SLOT 
+mt4res = M4Y AND RMDMY  //  metal4 resistor
+
+//***** Define connectivity/via layer -- metal4 ****
+metal4 = M4Y NOT mt4res  //  metal4 interconnect
+
+//* Define device -- r M5
+M5X = M5 OR DUM5 
+M5Y = M5X NOT M5SLOT 
+mt5res = M5Y AND RMDMY  //  metal5 resistor
+
+//***** Define connectivity/via layer -- metal5 ****
+metal5 = M5Y NOT mt5res  //  metal5 interconnect
+
+//* Define device -- r M6
+M6X = M6 OR DUM6 
+M6Y = M6X NOT M6SLOT 
+mt6res = M6Y AND RMDMY  //  metal6 resistor
+
+//***** Define connectivity/via layer -- metal6 ****
+metal6 = M6Y NOT mt6res  //  metal6 interconnect
+
+//* Define device -- r M7
+M7X = M7 OR DUM7 
+M7Y = M7X NOT M7SLOT 
+mt7res = M7Y AND RMDMY  //  metal7 resistor
+
+//***** Define connectivity/via layer -- metal7 ****
+metal7 = M7Y NOT mt7res  //  metal7 interconnect
+
+//* Define device -- r ME
+M8X = M8 OR DUM8 
+M8Y = M8X NOT M8SLOT 
+mt8res = M8Y AND RMDMY  //  metal8 resistor
+
+//***** Define connectivity/via layer -- metal8 ****
+metal8 = M8Y NOT mt8res  //  metal8 interconnect
+
+//* Define device -- xdev R(WR)
+trwell = NWDMY AND NWELL  //  N-well resistor layer
+drpo = diff AND RPO 
+nwsti_r = trwell NOT drpo  //  NWDMY*NWELL-RPO-diff --> nwsti
+
+//* Define device -- xdev R(WO)
+nwod_r = trwell AND drpo  //  NWDMY*NWELL*RPO*diff --> nwod
+
+//* Define device -- xdev R(PR)
+rppolywo_r = rpolywo AND PP  //  P+POLY resistor w/o silicide
+
+//* Define device -- xdev R(NR)
+rnpolywo_r = rpolywo AND NP  //  N+POLY resistor w/o silicide
+
+//* Define device -- xdev R(PD)
+rpodwo1 = rodwo AND PP 
+rpodwo_r = rpodwo1 AND NWELL  //  P+OD resistor w/o silicide
+
+//* Define device -- xdev R(ND)
+rnodwo1 = rodwo AND NP 
+rnodwo_r = rnodwo1 NOT NWELL  //  N+OD resistor w/o silicide
+
+//* Define device -- xdev R(PS)
+rppoly_r = rpoly AND PP  //  P+POLY resistor w/i silicide
+
+//* Define device -- xdev R(NS)
+rnpoly_r = rpoly AND NP  //  N+POLY resistor w/i silicide
+
+//* Define device -- xdev R(PI)
+rpod1 = rod AND PP 
+rpod_r = rpod1 AND NWELL  //  P+OD resistor w/i silicide
+
+//* Define device -- xdev R(NI)
+rnod1 = rod AND NP 
+rnod_r = rnod1 NOT NWELL  //  N+OD resistor w/i silicide
+
+//* Define device -- xdev NC1
+vargt1 = gatenw AND NP 
+vargt2 = vargt1 AND VARDMY 
+vargt = vargt2 NOT OD2  //  Varactor on thin oxide
+
+//* Define device -- xdev NC2
+bvargt = vargt2 AND OD2  //  Varactor on thick oxide
+
+//* Define device -- xdev PC1
+pvargt1 = gatennw AND PP 
+pvargt2 = pvargt1 AND VARDMY 
+pvargt = pvargt2 NOT OD2  //  Varactor on thin oxide
+
+//* Define device -- xdev PC2
+pbvargt = pvargt2 AND OD2  //  Varactor on thick oxide
+
+//***** Define connectivity/via layer -- nxwell_npn ****
+ncollsa = ncolls TOUCH cnemit1 
+nxwell_npn = ncolls NOT ncollsa 
+
+//***** Define connectivity/via layer -- dnwc ****
+dnwc = DNW AND nxwell 
+
+//* Define ERC or other layers
+xwell = NWELL OUTSIDE NWDMY 
+ntapx = tndiff AND xwell 
+ntapy = ntapx NOT BJTDMY 
+ntap = ntapy NOT VARDMY 
+
+//***** Define connectivity/via layer -- psub_pnp ****
+collsura = collsur TOUCH cemit1 
+psub_pnp = collsur NOT collsura 
+
+//***** Define connectivity/via layer -- pl2co ****
+pl2co = POLY2 AND CONT  //  define POLY2 contact
+
+//***** Define connectivity/via layer -- nplug ****
+nplug = tndiff AND nxwell  //  define N_well contact
+
+//***** Define connectivity/via layer -- pplug ****
+pplug = tpdiff AND psub  //  define p_sub contact
+
+//***** Define connectivity/via layer -- tiod ****
+tioda = diff NOT tpdiff 
+tiodb = tioda NOT tndiff 
+tiod1 = tiodb NOT POLYG 
+tiod2 = tiod1 NOT RPO 
+tiod3 = tiod2 NOT RPDMY 
+tiod = tiod3 NOT NWDMY  //  RPO, RPDMY, NWDMY cut ti-od
+ptap = tpdiff AND psub 
+
+//***** Define connectivity/via layer -- odCont ****
+pl1coa = CONT NOT pl2co 
+odCont = pl1coa NOT POLYG 
+
+//***** Define connectivity/via layer -- c2poly ****
+rp2 = rp1 NOT INTERACT POLYG 
+p2rdum = rp2 INTERACT POLY2  //  poly2 resistor dummy
+resp2 = POLY2 AND p2rdum  //  poly2 resistor
+c2poly = POLY2 NOT resp2  //  poly2 interconnect
+
+//***** Define connectivity/via layer -- pl1co ****
+pl1co = pl1coa AND POLYG 
+//#############################################
+//# CONNECTION                                #
+//#############################################
+CONNECT cemit1 tpdiff
+CONNECT metal1 c2poly BY pl2co
+CONNECT metal1 tndiff BY odCont
+CONNECT metal1 poly BY pl1co
+CONNECT metal1 tpdiff BY odCont
+CONNECT metal2 metal1 BY VIA1
+CONNECT metal3 metal2 BY VIA2
+CONNECT metal4 metal3 BY VIA3
+CONNECT metal5 metal4 BY VIA4
+CONNECT ncoll1 nxwell_npn
+CONNECT metal6 metal5 BY VIA5
+CONNECT metal7 metal6 BY VIA6
+CONNECT metal8 metal7 BY VIA7
+CONNECT tiod tndiff
+CONNECT tiod tpdiff
+CONNECT cnemit1 tndiff
+CONNECT nbase1 tndiff BY nplug
+CONNECT tndiff nxwell_npn BY nplug
+CONNECT tndiff ydio
+CONNECT tndiff tpdiff
+CONNECT coll1 psub_pnp
+CONNECT pbase1 tpdiff BY pplug
+CONNECT tpdiff psub_pnp BY pplug
+
+#IFDEF RC_DECK
+CONNECT  poly gate
+CONNECT  nxwell DNW BY dnwc
+CONNECT  tndiff nxwell BY nplug
+CONNECT  tpdiff psub BY pplug
+#ELSE
+SCONNECT nxwell DNW BY dnwc
+SCONNECT tndiff nxwell BY nplug
+SCONNECT tpdiff psub BY pplug
+#ENDIF
+//#############################################
+//# FORM DEVICE                               #
+//#############################################
+
+#IFDEF RC_DECK
+DEVICE MN(N2) bnrgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bnrgate, tndiff ) + perimeter_inside(bnrgate, tndiff)) / 2
+   L=area(bnrgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(NLV) nlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(nlvgate, tndiff ) + perimeter_inside(nlvgate, tndiff)) / 2
+   L=area(nlvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(N1LV) n1lvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(n1lvgate, tndiff ) + perimeter_inside(n1lvgate, tndiff)) / 2
+   L=area(n1lvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(NHL) bnlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bnlvgate, tndiff ) + perimeter_inside(bnlvgate, tndiff)) / 2
+   L=area(bnlvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(N2LV) bndlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bndlvgate, tndiff ) + perimeter_inside(bndlvgate, tndiff)) / 2
+   L=area(bndlvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(ND) bngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bngate, tndiff ) + perimeter_inside(bngate, tndiff)) / 2
+   L=area(bngate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(NL) nlgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(nlgate, tndiff ) + perimeter_inside(nlgate, tndiff)) / 2
+   L=area(nlgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(nch_sram) ngate_s poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(ngate_s, tndiff ) + perimeter_inside(ngate_s, tndiff)) / 2
+   L=area(ngate_s) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(NN) bnngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bnngate, tndiff ) + perimeter_inside(bnngate, tndiff)) / 2
+   L=area(bnngate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(NHV) nhvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(nhvgate, tndiff ) + perimeter_inside(nhvgate, tndiff)) / 2
+   L=area(nhvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(nch_sram_hvt) ngate_s_hvt poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(ngate_s_hvt, tndiff ) + perimeter_inside(ngate_s_hvt, tndiff)) / 2
+   L=area(ngate_s_hvt) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(N1HV) n1hvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(n1hvgate, tndiff ) + perimeter_inside(n1hvgate, tndiff)) / 2
+   L=area(n1hvgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(N) ngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(ngate, tndiff ) + perimeter_inside(ngate, tndiff)) / 2
+   L=area(ngate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MN(N1) nrgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(nrgate, tndiff ) + perimeter_inside(nrgate, tndiff)) / 2
+   L=area(nrgate) / W
+   PI_S_OD = perimeter_inside(S,nthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,nthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(P) pgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(pgate, tpdiff ) + perimeter_inside(pgate, tpdiff)) / 2 
+   L=area(pgate) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(PLV) plvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(plvgate, tpdiff ) + perimeter_inside(plvgate, tpdiff)) / 2 
+   L=area(plvgate) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(PHL) bplvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bplvgate, tpdiff ) + perimeter_inside(bplvgate, tpdiff)) / 2 
+   L=area(bplvgate) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(PD) bpgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(bpgate, tpdiff ) + perimeter_inside(bpgate, tpdiff)) / 2 
+   L=area(bpgate) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(pchpu_hvtsr_g) pgate_s_hvt poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(pgate_s_hvt, tpdiff ) + perimeter_inside(pgate_s_hvt, tpdiff)) / 2 
+   L=area(pgate_s_hvt) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(pch_sram) pgate_s poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(pgate_s, tpdiff ) + perimeter_inside(pgate_s, tpdiff)) / 2 
+   L=area(pgate_s) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+DEVICE MP(PHV) phvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD,PD,PS,NRD,NRS
+   W=(perimeter_coincide(phvgate, tpdiff ) + perimeter_inside(phvgate, tpdiff)) / 2 
+   L=area(phvgate) / W
+   PI_S_OD = perimeter_inside(S,pthin)
+   IF(PI_S_OD > 0) {
+    AS = area(S) * W /PI_S_OD
+    PS = perimeter(S) * W /PI_S_OD
+   } ELSE { AS=0 PS=0 }
+   PI_D_OD = perimeter_inside(D,pthin)
+   IF(PI_D_OD > 0) {
+    AD = area(D) * W /PI_D_OD
+    PD = perimeter(D) * W /PI_D_OD
+   } ELSE { AD=0 PD=0 }
+   NRS = AS / W / W
+   NRD = AD / W / W
+]
+#ELSE
+
+#IFDEF extract_as_ad
+DEVICE MN(N2) bnrgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bnrgate, tndiff ) + perimeter_inside(bnrgate, tndiff)) / 2
+   L=area(bnrgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(NLV) nlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(nlvgate, tndiff ) + perimeter_inside(nlvgate, tndiff)) / 2
+   L=area(nlvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(N1LV) n1lvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(n1lvgate, tndiff ) + perimeter_inside(n1lvgate, tndiff)) / 2
+   L=area(n1lvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(NHL) bnlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bnlvgate, tndiff ) + perimeter_inside(bnlvgate, tndiff)) / 2
+   L=area(bnlvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(N2LV) bndlvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bndlvgate, tndiff ) + perimeter_inside(bndlvgate, tndiff)) / 2
+   L=area(bndlvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(ND) bngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bngate, tndiff ) + perimeter_inside(bngate, tndiff)) / 2
+   L=area(bngate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(NL) nlgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(nlgate, tndiff ) + perimeter_inside(nlgate, tndiff)) / 2
+   L=area(nlgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(nch_sram) ngate_s poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(ngate_s, tndiff ) + perimeter_inside(ngate_s, tndiff)) / 2
+   L=area(ngate_s) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(NN) bnngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bnngate, tndiff ) + perimeter_inside(bnngate, tndiff)) / 2
+   L=area(bnngate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(NHV) nhvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(nhvgate, tndiff ) + perimeter_inside(nhvgate, tndiff)) / 2
+   L=area(nhvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(nch_sram_hvt) ngate_s_hvt poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(ngate_s_hvt, tndiff ) + perimeter_inside(ngate_s_hvt, tndiff)) / 2
+   L=area(ngate_s_hvt) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(N1HV) n1hvgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(n1hvgate, tndiff ) + perimeter_inside(n1hvgate, tndiff)) / 2
+   L=area(n1hvgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(N) ngate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(ngate, tndiff ) + perimeter_inside(ngate, tndiff)) / 2
+   L=area(ngate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MN(N1) nrgate poly(G) tndiff(S) tndiff(D) psub(B) <nthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(nrgate, tndiff ) + perimeter_inside(nrgate, tndiff)) / 2
+   L=area(nrgate) / W
+  AS = area(S) * W /perimeter_inside(S,nthin)
+  AD = area(D) * W /perimeter_inside(D,nthin)
+]
+DEVICE MP(P) pgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(pgate, tpdiff ) + perimeter_inside(pgate, tpdiff)) / 2 
+   L=area(pgate) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(PLV) plvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(plvgate, tpdiff ) + perimeter_inside(plvgate, tpdiff)) / 2 
+   L=area(plvgate) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(PHL) bplvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bplvgate, tpdiff ) + perimeter_inside(bplvgate, tpdiff)) / 2 
+   L=area(bplvgate) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(PD) bpgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(bpgate, tpdiff ) + perimeter_inside(bpgate, tpdiff)) / 2 
+   L=area(bpgate) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(pchpu_hvtsr_g) pgate_s_hvt poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(pgate_s_hvt, tpdiff ) + perimeter_inside(pgate_s_hvt, tpdiff)) / 2 
+   L=area(pgate_s_hvt) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(pch_sram) pgate_s poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(pgate_s, tpdiff ) + perimeter_inside(pgate_s, tpdiff)) / 2 
+   L=area(pgate_s) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+DEVICE MP(PHV) phvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) <pthin>[
+  property W,L,AS,AD
+   W=(perimeter_coincide(phvgate, tpdiff ) + perimeter_inside(phvgate, tpdiff)) / 2 
+   L=area(phvgate) / W
+  AS = area(S) * W /perimeter_inside(S,pthin)
+  AD = area(D) * W /perimeter_inside(D,pthin)
+]
+
+
+#ELSE
+DEVICE MN(N2) bnrgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(bnrgate, tndiff ) + perimeter_inside(bnrgate, tndiff)) / 2 
+   L=area(bnrgate) / W
+]
+DEVICE MN(NLV) nlvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(nlvgate, tndiff ) + perimeter_inside(nlvgate, tndiff)) / 2 
+   L=area(nlvgate) / W
+]
+DEVICE MN(N1LV) n1lvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(n1lvgate, tndiff ) + perimeter_inside(n1lvgate, tndiff)) / 2 
+   L=area(n1lvgate) / W
+]
+DEVICE MN(NHL) bnlvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(bnlvgate, tndiff ) + perimeter_inside(bnlvgate, tndiff)) / 2 
+   L=area(bnlvgate) / W
+]
+DEVICE MN(N2LV) bndlvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(bndlvgate, tndiff ) + perimeter_inside(bndlvgate, tndiff)) / 2 
+   L=area(bndlvgate) / W
+]
+DEVICE MN(ND) bngate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(bngate, tndiff ) + perimeter_inside(bngate, tndiff)) / 2 
+   L=area(bngate) / W
+]
+DEVICE MN(NL) nlgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(nlgate, tndiff ) + perimeter_inside(nlgate, tndiff)) / 2 
+   L=area(nlgate) / W
+]
+DEVICE MN(nch_sram) ngate_s poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(ngate_s, tndiff ) + perimeter_inside(ngate_s, tndiff)) / 2 
+   L=area(ngate_s) / W
+]
+DEVICE MN(NN) bnngate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(bnngate, tndiff ) + perimeter_inside(bnngate, tndiff)) / 2 
+   L=area(bnngate) / W
+]
+DEVICE MN(NHV) nhvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(nhvgate, tndiff ) + perimeter_inside(nhvgate, tndiff)) / 2 
+   L=area(nhvgate) / W
+]
+DEVICE MN(nch_sram_hvt) ngate_s_hvt poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(ngate_s_hvt, tndiff ) + perimeter_inside(ngate_s_hvt, tndiff)) / 2 
+   L=area(ngate_s_hvt) / W
+]
+DEVICE MN(N1HV) n1hvgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(n1hvgate, tndiff ) + perimeter_inside(n1hvgate, tndiff)) / 2 
+   L=area(n1hvgate) / W
+]
+DEVICE MN(N) ngate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(ngate, tndiff ) + perimeter_inside(ngate, tndiff)) / 2 
+   L=area(ngate) / W
+]
+DEVICE MN(N1) nrgate poly(G) tndiff(S) tndiff(D) psub(B) [
+   property W,L
+   W=(perimeter_coincide(nrgate, tndiff ) + perimeter_inside(nrgate, tndiff)) / 2 
+   L=area(nrgate) / W
+]
+DEVICE MP(P) pgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(pgate, tpdiff ) + perimeter_inside(pgate, tpdiff)) / 2 
+   L=area(pgate) / W
+]
+DEVICE MP(PLV) plvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(plvgate, tpdiff ) + perimeter_inside(plvgate, tpdiff)) / 2 
+   L=area(plvgate) / W
+]
+DEVICE MP(PHL) bplvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(bplvgate, tpdiff ) + perimeter_inside(bplvgate, tpdiff)) / 2 
+   L=area(bplvgate) / W
+]
+DEVICE MP(PD) bpgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(bpgate, tpdiff ) + perimeter_inside(bpgate, tpdiff)) / 2 
+   L=area(bpgate) / W
+]
+DEVICE MP(pchpu_hvtsr_g) pgate_s_hvt poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(pgate_s_hvt, tpdiff ) + perimeter_inside(pgate_s_hvt, tpdiff)) / 2 
+   L=area(pgate_s_hvt) / W
+]
+DEVICE MP(pch_sram) pgate_s poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(pgate_s, tpdiff ) + perimeter_inside(pgate_s, tpdiff)) / 2 
+   L=area(pgate_s) / W
+]
+DEVICE MP(PHV) phvgate poly(G) tpdiff(S) tpdiff(D) nxwell(B) [
+   property W,L
+   W=(perimeter_coincide(phvgate, tpdiff ) + perimeter_inside(phvgate, tpdiff)) / 2 
+   L=area(phvgate) / W
+]
+
+
+#ENDIF
+
+#ENDIF
+
+
+#IFNDEF RC_DECK
+TRACE PROPERTY MN(N2) L L 0
+TRACE PROPERTY MN(N2) W W 0
+TRACE PROPERTY MN(NLV) L L 0
+TRACE PROPERTY MN(NLV) W W 0
+TRACE PROPERTY MN(N1LV) L L 0
+TRACE PROPERTY MN(N1LV) W W 0
+TRACE PROPERTY MN(NHL) L L 0
+TRACE PROPERTY MN(NHL) W W 0
+TRACE PROPERTY MN(N2LV) L L 0
+TRACE PROPERTY MN(N2LV) W W 0
+TRACE PROPERTY MN(ND) L L 0
+TRACE PROPERTY MN(ND) W W 0
+TRACE PROPERTY MN(NL) L L 0
+TRACE PROPERTY MN(NL) W W 0
+TRACE PROPERTY MN(nch_sram) L L 0
+TRACE PROPERTY MN(nch_sram) W W 0
+TRACE PROPERTY MN(NN) L L 0
+TRACE PROPERTY MN(NN) W W 0
+TRACE PROPERTY MN(NHV) L L 0
+TRACE PROPERTY MN(NHV) W W 0
+TRACE PROPERTY MN(nch_sram_hvt) L L 0
+TRACE PROPERTY MN(nch_sram_hvt) W W 0
+TRACE PROPERTY MN(N1HV) L L 0
+TRACE PROPERTY MN(N1HV) W W 0
+TRACE PROPERTY MN(N) L L 0
+TRACE PROPERTY MN(N) W W 0
+TRACE PROPERTY MN(N1) L L 0
+TRACE PROPERTY MN(N1) W W 0
+TRACE PROPERTY MP(P) L L 0
+TRACE PROPERTY MP(P) W W 0
+TRACE PROPERTY MP(PLV) L L 0
+TRACE PROPERTY MP(PLV) W W 0
+TRACE PROPERTY MP(PHL) L L 0
+TRACE PROPERTY MP(PHL) W W 0
+TRACE PROPERTY MP(PD) L L 0
+TRACE PROPERTY MP(PD) W W 0
+TRACE PROPERTY MP(pchpu_hvtsr_g) L L 0
+TRACE PROPERTY MP(pchpu_hvtsr_g) W W 0
+TRACE PROPERTY MP(pch_sram) L L 0
+TRACE PROPERTY MP(pch_sram) W W 0
+TRACE PROPERTY MP(PHV) L L 0
+TRACE PROPERTY MP(PHV) W W 0
+#ENDIF
+
+DEVICE Q(PV) cemit1 coll1 nbase1 cemit1 [
+		property A
+		A = area(cemit1)
+]
+
+#IFNDEF RC_DECK
+  TRACE PROPERTY Q(PV) A A 0
+#ENDIF
+DEVICE Q(NV) cnemit1 ncoll1 pbase1 cnemit1 [
+		property A
+		A = area(cnemit1)
+]
+
+#IFNDEF RC_DECK
+  TRACE PROPERTY Q(NV) A A 0
+#ENDIF
+DEVICE D(DPL) pdiol tpdiff nxwell
+  TRACE PROPERTY D(DPL) A A 0
+DEVICE D(DN) cndio psub tndiff
+  TRACE PROPERTY D(DN) A A 0
+DEVICE D(D1N) cndion psub tndiff
+  TRACE PROPERTY D(D1N) A A 0
+DEVICE D(D2N) indion psub tndiff
+  TRACE PROPERTY D(D2N) A A 0
+DEVICE D(DP) cpdio tpdiff nxwell
+  TRACE PROPERTY D(DP) A A 0
+DEVICE D(D1) ipdio tpdiff nxwell
+  TRACE PROPERTY D(D1) A A 0
+DEVICE D(DB) ydio psub tndiff
+  TRACE PROPERTY D(DB) A A 0
+DEVICE D(D2) indio psub tndiff
+  TRACE PROPERTY D(D2) A A 0
+DEVICE D(D3) inwdio psub nxwell
+  TRACE PROPERTY D(D3) A A 0
+DEVICE D(DNH) ndioh psub tndiff
+  TRACE PROPERTY D(DNH) A A 0
+DEVICE D(DW) cnwdio psub nxwell
+  TRACE PROPERTY D(DW) A A 0
+DEVICE D(DPH) pdioh tpdiff nxwell
+  TRACE PROPERTY D(DPH) A A 0
+DEVICE D(DNL) ndiol psub tndiff
+  TRACE PROPERTY D(DNL) A A 0
+DEVICE R(M3) mt3res metal3 metal3 [RVM3]
+  TRACE PROPERTY R(M3) R R 0
+DEVICE R(M4) mt4res metal4 metal4 [RVM4]
+  TRACE PROPERTY R(M4) R R 0
+DEVICE R(ME) mt8res metal8 metal8 [RVME]
+  TRACE PROPERTY R(ME) R R 0
+DEVICE R(M5) mt5res metal5 metal5 [RVM5]
+  TRACE PROPERTY R(M5) R R 0
+DEVICE R(M6) mt6res metal6 metal6 [RVM6]
+  TRACE PROPERTY R(M6) R R 0
+DEVICE R(M7) mt7res metal7 metal7 [RVM7]
+  TRACE PROPERTY R(M7) R R 0
+DEVICE R(M1) mt1res metal1 metal1 [RVM1]
+  TRACE PROPERTY R(M1) R R 0
+DEVICE R(M2) mt2res metal2 metal2 [RVM2]
+  TRACE PROPERTY R(M2) R R 0
+
+// User define devices 
+DEVICE NC1 vargt poly(ng) tndiff(nds) <nthin> [
+       property LR,WR
+       nr = count(vargt)
+       LR = perimeter_coincide(vargt,nthin)/nr
+       A  = area(vargt)/nr
+       WR = A/LR
+]
+TRACE PROPERTY NC1 WR WR 0
+TRACE PROPERTY NC1 LR LR 0
+
+DEVICE NC2 bvargt poly(ng) tndiff(nds) <nthin> [
+       property LR,WR
+       nr = count(bvargt)
+       LR = perimeter_coincide(bvargt,nthin)/nr
+       A  = area(bvargt)/nr
+       WR = A/LR
+]
+TRACE PROPERTY NC2 WR WR 0
+TRACE PROPERTY NC2 LR LR 0
+
+#IFDEF ACCURACY
+  DEVICE R(NR) rnpolywo_r poly poly [
+	property R
+	W = perimeter_coincide(rnpolywo_r,poly)/2
+	L = area(rnpolywo_r)/W
+	X = W-DWNR
+	Y = L-DLNR
+	Rend = DDNR/X
+	Rpure = RVNR*Y/X
+	R = 2*Rend+Rpure
+  ]
+#ELSE
+  DEVICE R(NR) rnpolywo_r poly poly [RVNR]
+#ENDIF  
+  TRACE PROPERTY R(NR) R R 2	
+
+DEVICE PC1 pvargt poly(ng) tpdiff(nds) <pthin> [
+       property LR,WR
+       nr = count(pvargt)
+       LR = perimeter_coincide(pvargt,pthin)/nr
+       A  = area(pvargt)/nr
+       WR = A/LR
+]
+TRACE PROPERTY PC1 WR WR 0
+TRACE PROPERTY PC1 LR LR 0
+
+#IFDEF ACCURACY
+  DEVICE R(NS) rnpoly_r poly poly [
+	property R
+	W = perimeter_coincide(rnpoly_r,poly)/2
+	L = area(rnpoly_r)/W
+	if(W>=2e-6) {
+	R = RVNSL*L/(W-DWNS)
+	} else {
+	R = RVNSS*L/(W-DWNS)
+	}
+  ]
+#ELSE
+  DEVICE R(NS) rnpoly_r poly poly [RVNSL]
+#ENDIF  
+  TRACE PROPERTY R(NS) R R 2
+
+DEVICE PC2 pbvargt poly(ng) tpdiff(nds) <pthin> [
+       property LR,WR
+       nr = count(pbvargt)
+       LR = perimeter_coincide(pbvargt,pthin)/nr
+       A  = area(pbvargt)/nr
+       WR = A/LR
+]
+TRACE PROPERTY PC2 WR WR 0
+TRACE PROPERTY PC2 LR LR 0
+
+#IFDEF ACCURACY
+  DEVICE R(ND) rnodwo_r tndiff tndiff [
+	property R
+	W = perimeter_coincide(rnodwo_r,tndiff)/2
+	L = area(rnodwo_r)/W
+	R = RVND*L/(W-DWND)
+  ]
+#ELSE
+  DEVICE R(ND) rnodwo_r tndiff tndiff [RVND]
+#ENDIF  
+  TRACE PROPERTY R(ND) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(PR) rppolywo_r poly poly [
+	property R
+	W = perimeter_coincide(rppolywo_r,poly)/2
+	L = area(rppolywo_r)/W
+	X = W-DWPR
+	Y = L-DLPR
+	Rend = DDPR/X
+	Rpure = RVPR*Y/X
+	R = 2*Rend+Rpure
+  ]
+#ELSE
+  DEVICE R(PR) rppolywo_r poly poly [RVPR]
+#ENDIF
+  TRACE PROPERTY R(PR) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(PS) rppoly_r poly poly [
+	property R
+	W = perimeter_coincide(rppoly_r,poly)/2
+	L = area(rppoly_r)/W
+	if(W>=2e-6) {
+	R = RVPSL*L/(W-DWPS)
+	} else {
+	R = RVPSS*L/(W-DWPS)
+	}
+  ]
+#ELSE
+  DEVICE R(PS) rppoly_r poly poly [RVPSL]
+#ENDIF  
+  TRACE PROPERTY R(PS) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(PD) rpodwo_r tpdiff tpdiff [
+	property R
+	W = perimeter_coincide(rpodwo_r,tpdiff)/2
+	L = area(rpodwo_r)/W
+	R = RVPD*L/(W-DWPD)
+  ]
+#ELSE
+  DEVICE R(PD) rpodwo_r tpdiff tpdiff [RVPD]
+#ENDIF
+  TRACE PROPERTY R(PD) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(WO) nwod_r nxwell nxwell [
+	property R
+	W = perimeter_coincide(nwod_r,nxwell)/2
+	L = area(nwod_r)/W
+	R = RVWO*L/(W-DWWO)
+  ]
+#ELSE
+  DEVICE R(WO) nwod_r nxwell nxwell [RVWO]
+#ENDIF  
+  TRACE PROPERTY R(WO) R R 2
+
+#IFDEF ACCURACY
+ DEVICE R(NI) rnod_r tndiff tndiff [
+	property R
+	W = perimeter_coincide(rnod_r,tndiff)/2
+	L = area(rnod_r)/W
+	if(W>=2e-6) {
+	R = RVNIL*L/(W-DWNI)
+	} else {
+	R = RVNIS*L/(W-DWNI)
+	}
+ ]
+#ELSE
+ DEVICE R(NI) rnod_r tndiff tndiff [RVNIL]
+#ENDIF
+  TRACE PROPERTY R(NI) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(WR) nwsti_r nxwell nxwell [
+	property R
+	W = perimeter_coincide(nwsti_r,nxwell)/2
+	L = area(nwsti_r)/W
+	R = RVWR*L/(W-DWWR)
+  ]
+#ELSE
+  DEVICE R(WR) nwsti_r nxwell nxwell [RVWR]
+#ENDIF
+  TRACE PROPERTY R(WR) R R 2
+
+#IFDEF ACCURACY
+  DEVICE R(PI) rpod_r tpdiff tpdiff [
+	property R
+	W = perimeter_coincide(rpod_r,tpdiff)/2
+	L = area(rpod_r)/W
+	if(W>=2e-6) {
+	R = RVPIL*L/(W-DWPI)
+	} else {
+	R = RVPIS*L/(W-DWPI)
+	}
+  ]
+#ELSE  
+  DEVICE R(PI) rpod_r tpdiff tpdiff [RVPIL]
+#ENDIF  
+  TRACE PROPERTY R(PI) R R 2
+
+
+#IFDEF RC_DECK
+//=============================
+//======= Setup for PEX =======
+//=============================
+MASK SVDB DIRECTORY "svdb" XCALIBRE
+
+PEX BACKANNOTATION DISTRIBUTED NONE
+PEX BACKANNOTATION LUMPED      NONE
+PEX COUPLED DISTRIBUTED        NO MASK DIRECT
+PEX DELAY                      none   //PENFIELD 0.7 MASK DIRECT
+PEX EXCLUDE DISTRIBUTED        "VDD" "AVDD" "VD33" "VDDSA" "VDDPST" "VDD5V" MASK DIRECT
+PEX EXCLUDE LUMPED             "VDD" "AVDD" "VD33" "VDDSA" "VDDPST" "VDD5V" MASK DIRECT
+PEX NETLIST DISTRIBUTED        "net.dist" SPICE LAYOUT GROUND VSS MASK DIRECT LOCATION LOOP
+PEX NETLIST LUMPED             "temp.spi" SPICE LAYOUT GROUND VSS MASK DIRECT LOCATION
+PEX NETLIST SIMPLE             "net.simple" SPICE LAYOUT MASK DIRECT LOCATION
+//Back-annotation xcalibre flow
+//PEX NETLIST DISTRIBUTED        "net.dist" SPICE SOURCE GROUND VSS MASK DIRECT LOCATION LOOP
+//PEX NETLIST LUMPED             "temp.spi" SPICE SOURCE GROUND VSS MASK DIRECT LOCATION
+//PEX NETLIST SIMPLE             "net.simple" SPICE SOURCE MASK DIRECT LOCATION
+
+PEX REPORT DISTRIBUTED         none  //"report.dist" ASCII LAYOUT MASK DIRECT
+PEX REPORT LUMPED              none  //"report.lump" LAYOUT MASK DIRECT
+PEX RESISTANCE LUMPED          YES MASK DIRECT
+//PEX REDUCE LUMPED C            < 10000000
+PEX FDB allnets GLOBAL 5000  EXCLUDE LAYOUT VCC GND
+
+// xcalibre capacitance and resistance file 
+UNIT CAPACITANCE ff
+UNIT RESISTANCE OHM
+include ./rules
+
+
+#ELSE
+
+//#############################################
+//# ERC CHECK                                 #
+//#############################################
+// Reports regions on a DNW layer that connect to more than one node.
+LVS SOFTCHK DNW CONTACT
+// Reports regions on a nxwell layer that connect to more than one node.
+LVS SOFTCHK nxwell CONTACT
+// Reports regions on a psub layer that connect to more than one node.
+LVS SOFTCHK psub CONTACT
+
+// Nodes with a path to power but not ground 
+ERC PATHCHK GROUND && !POWER
+
+// Nodes with a path to ground but not power 
+ERC PATHCHK POWER && !GROUND
+
+// Nodes without a path to power and ground 
+ERC PATHCHK !POWER && !GROUND NOFLOAT
+ERC PATHCHK !LABELED NOFLOAT
+
+ // ptap connect to power 
+ppvdd49 { @ ptap connected to POWER
+	NET ptap  "VDD" "AVDD" "VD33" "VDDSA" "VDDPST" "VDD5V" "VDDG" "TAVDD" "TAVD33" "TAVD33PST" "TAVDDPST" "AHVDD" "AVDDR" "AVDDG" "AVDDB" "AVDDBG" "AHVDDR" "AHVDDG" "AHVDDB" "AVDWELL" "VDWELL" "AHVDDWELL" "HVDDWELL" "DVDD" "DHVDD"
+}
+
+ // MOS N S/D connect to POWER&GROUND --mnpg*/
+N1tndiff = NET tndiff  "VDD" "AVDD" "VD33" "VDDSA" "VDDPST" "VDD5V" "VDDG" "TAVDD" "TAVD33" "TAVD33PST" "TAVDDPST" "AHVDD" "AVDDR" "AVDDG" "AVDDB" "AVDDBG" "AHVDDR" "AHVDDG" "AHVDDB" "AVDWELL" "VDWELL" "AHVDDWELL" "HVDDWELL" "DVDD" "DHVDD"
+T1tndiff = ngate  TOUCH N1tndiff
+N2tndiff = NET tndiff  "GND" "AGND" "VSS" "AVSS" "VS33" "VSSPST" "VSSG" "TAVSS" "TAVSSPST" "AHVSS" "AVSSR" "AVSSG" "AVSSB" "AVSSBG" "AHVSSR" "AHVSSG" "AHVSSB" "AVSSUB" "VSSUB" "AHVSSUB" "HVSSUB" "DVSS" "DHVSS"
+T2tndiff = ngate  TOUCH N2tndiff
+mnpg { @ MOS connected to both power and ground
+ T1tndiff AND T2tndiff
+}
+
+ // MOS P S/D connect to POWER&GROUND --mppg*/
+N1tpdiff = NET tpdiff  "VDD" "AVDD" "VD33" "VDDSA" "VDDPST" "VDD5V" "VDDG" "TAVDD" "TAVD33" "TAVD33PST" "TAVDDPST" "AHVDD" "AVDDR" "AVDDG" "AVDDB" "AVDDBG" "AHVDDR" "AHVDDG" "AHVDDB" "AVDWELL" "VDWELL" "AHVDDWELL" "HVDDWELL" "DVDD" "DHVDD"
+T1tpdiff =  pgate TOUCH N1tpdiff
+N2tpdiff = NET tpdiff  "GND" "AGND" "VSS" "AVSS" "VS33" "VSSPST" "VSSG" "TAVSS" "TAVSSPST" "AHVSS" "AVSSR" "AVSSG" "AVSSB" "AVSSBG" "AHVSSR" "AHVSSG" "AHVSSB" "AVSSUB" "VSSUB" "AHVSSUB" "HVSSUB" "DVSS" "DHVSS"
+T2tpdiff =  pgate TOUCH N2tpdiff
+mppg { @ MOS connected to both power and ground
+ T1tpdiff AND T2tpdiff
+}
+
+ // ntap connect to ground 
+npvss49 { @ ntap connected to GROUND
+	NET ntap  "GND" "AGND" "VSS" "AVSS" "VS33" "VSSPST" "VSSG" "TAVSS" "TAVSSPST" "AHVSS" "AVSSR" "AVSSG" "AVSSB" "AVSSBG" "AHVSSR" "AHVSSG" "AHVSSB" "AVSSUB" "VSSUB" "AHVSSUB" "HVSSUB" "DVSS" "DHVSS"
+}
+
+#ENDIF
+
+
+//#########################################################################
+//		END
+//#########################################################################
+
+//#############################
+// Modified by CIC 2005/07/29 #
+//#############################
+VIRTUAL CONNECT BOX NAME "?"
+// core
+LVS BOX ACCSHCINX2
+LVS BOX ACCSHCINX4
+LVS BOX ACCSHCONX2
+LVS BOX ACCSHCONX4
+LVS BOX ACCSIHCONX2
+LVS BOX ACCSIHCONX4
+LVS BOX ACHCINX2
+LVS BOX ACHCINX4
+LVS BOX ACHCONX2
+LVS BOX ACHCONX4
+LVS BOX ADDFHX1
+LVS BOX ADDFHX2
+LVS BOX ADDFHX4
+LVS BOX ADDFHXL
+LVS BOX ADDFX1
+LVS BOX ADDFX2
+LVS BOX ADDFX4
+LVS BOX ADDFXL
+LVS BOX ADDHX1
+LVS BOX ADDHX2
+LVS BOX ADDHX4
+LVS BOX ADDHXL
+LVS BOX AFCSHCINX2
+LVS BOX AFCSHCINX4
+LVS BOX AFCSHCONX2
+LVS BOX AFCSHCONX4
+LVS BOX AFCSIHCONX2
+LVS BOX AFCSIHCONX4
+LVS BOX AFHCINX2
+LVS BOX AFHCINX4
+LVS BOX AFHCONX2
+LVS BOX AFHCONX4
+LVS BOX AHCSHCINX2
+LVS BOX AHCSHCINX4
+LVS BOX AHCSHCONX2
+LVS BOX AHCSHCONX4
+LVS BOX AHHCINX2
+LVS BOX AHHCINX4
+LVS BOX AHHCONX2
+LVS BOX AHHCONX4
+LVS BOX AND2X1
+LVS BOX AND2X2
+LVS BOX AND2X4
+LVS BOX AND2X6
+LVS BOX AND2X8
+LVS BOX AND2XL
+LVS BOX AND3X1
+LVS BOX AND3X2
+LVS BOX AND3X4
+LVS BOX AND3X6
+LVS BOX AND3X8
+LVS BOX AND3XL
+LVS BOX AND4X1
+LVS BOX AND4X2
+LVS BOX AND4X4
+LVS BOX AND4X6
+LVS BOX AND4X8
+LVS BOX AND4XL
+LVS BOX ANTENNA
+LVS BOX AO21X1
+LVS BOX AO21X2
+LVS BOX AO21X4
+LVS BOX AO21XL
+LVS BOX AO22X1
+LVS BOX AO22X2
+LVS BOX AO22X4
+LVS BOX AO22XL
+LVS BOX AOI211X1
+LVS BOX AOI211X2
+LVS BOX AOI211X4
+LVS BOX AOI211XL
+LVS BOX AOI21X1
+LVS BOX AOI21X2
+LVS BOX AOI21X4
+LVS BOX AOI21XL
+LVS BOX AOI221X1
+LVS BOX AOI221X2
+LVS BOX AOI221X4
+LVS BOX AOI221XL
+LVS BOX AOI222X1
+LVS BOX AOI222X2
+LVS BOX AOI222X4
+LVS BOX AOI222XL
+LVS BOX AOI22X1
+LVS BOX AOI22X2
+LVS BOX AOI22X4
+LVS BOX AOI22XL
+LVS BOX AOI2BB1X1
+LVS BOX AOI2BB1X2
+LVS BOX AOI2BB1X4
+LVS BOX AOI2BB1XL
+LVS BOX AOI2BB2X1
+LVS BOX AOI2BB2X2
+LVS BOX AOI2BB2X4
+LVS BOX AOI2BB2XL
+LVS BOX AOI31X1
+LVS BOX AOI31X2
+LVS BOX AOI31X4
+LVS BOX AOI31XL
+LVS BOX AOI32X1
+LVS BOX AOI32X2
+LVS BOX AOI32X4
+LVS BOX AOI32XL
+LVS BOX AOI33X1
+LVS BOX AOI33X2
+LVS BOX AOI33X4
+LVS BOX AOI33XL
+LVS BOX BENCX1
+LVS BOX BENCX2
+LVS BOX BENCX4
+LVS BOX BMXIX2
+LVS BOX BMXIX4
+LVS BOX BMXX2
+LVS BOX BMXX4
+LVS BOX BUFX12
+LVS BOX BUFX16
+LVS BOX BUFX20
+LVS BOX BUFX2
+LVS BOX BUFX3
+LVS BOX BUFX4
+LVS BOX BUFX6
+LVS BOX BUFX8
+LVS BOX CLKAND2X12
+LVS BOX CLKAND2X2
+LVS BOX CLKAND2X3
+LVS BOX CLKAND2X4
+LVS BOX CLKAND2X6
+LVS BOX CLKAND2X8
+LVS BOX CLKBUFX12
+LVS BOX CLKBUFX16
+LVS BOX CLKBUFX20
+LVS BOX CLKBUFX2
+LVS BOX CLKBUFX3
+LVS BOX CLKBUFX4
+LVS BOX CLKBUFX6
+LVS BOX CLKBUFX8
+LVS BOX CLKINVX12
+LVS BOX CLKINVX16
+LVS BOX CLKINVX1
+LVS BOX CLKINVX20
+LVS BOX CLKINVX2
+LVS BOX CLKINVX3
+LVS BOX CLKINVX4
+LVS BOX CLKINVX6
+LVS BOX CLKINVX8
+LVS BOX CLKMX2X12
+LVS BOX CLKMX2X2
+LVS BOX CLKMX2X3
+LVS BOX CLKMX2X4
+LVS BOX CLKMX2X6
+LVS BOX CLKMX2X8
+LVS BOX CLKXOR2X1
+LVS BOX CLKXOR2X2
+LVS BOX CLKXOR2X4
+LVS BOX CLKXOR2X8
+LVS BOX CMPR22X2
+LVS BOX CMPR22X4
+LVS BOX CMPR32X2
+LVS BOX CMPR32X4
+LVS BOX CMPR42X1
+LVS BOX CMPR42X2
+LVS BOX CMPR42X4
+LVS BOX DFFHQX1
+LVS BOX DFFHQX2
+LVS BOX DFFHQX4
+LVS BOX DFFHQX8
+LVS BOX DFFNSRX1
+LVS BOX DFFNSRX2
+LVS BOX DFFNSRX4
+LVS BOX DFFNSRXL
+LVS BOX DFFQX1
+LVS BOX DFFQX2
+LVS BOX DFFQX4
+LVS BOX DFFQXL
+LVS BOX DFFRHQX1
+LVS BOX DFFRHQX2
+LVS BOX DFFRHQX4
+LVS BOX DFFRHQX8
+LVS BOX DFFRX1
+LVS BOX DFFRX2
+LVS BOX DFFRX4
+LVS BOX DFFRXL
+LVS BOX DFFSHQX1
+LVS BOX DFFSHQX2
+LVS BOX DFFSHQX4
+LVS BOX DFFSHQX8
+LVS BOX DFFSRHQX1
+LVS BOX DFFSRHQX2
+LVS BOX DFFSRHQX4
+LVS BOX DFFSRHQX8
+LVS BOX DFFSRX1
+LVS BOX DFFSRX2
+LVS BOX DFFSRX4
+LVS BOX DFFSRXL
+LVS BOX DFFSX1
+LVS BOX DFFSX2
+LVS BOX DFFSX4
+LVS BOX DFFSXL
+LVS BOX DFFTRX1
+LVS BOX DFFTRX2
+LVS BOX DFFTRX4
+LVS BOX DFFTRXL
+LVS BOX DFFX1
+LVS BOX DFFX2
+LVS BOX DFFX4
+LVS BOX DFFXL
+LVS BOX DLY1X1
+LVS BOX DLY1X4
+LVS BOX DLY2X1
+LVS BOX DLY2X4
+LVS BOX DLY3X1
+LVS BOX DLY3X4
+LVS BOX DLY4X1
+LVS BOX DLY4X4
+LVS BOX EDFFHQX1
+LVS BOX EDFFHQX2
+LVS BOX EDFFHQX4
+LVS BOX EDFFHQX8
+LVS BOX EDFFTRX1
+LVS BOX EDFFTRX2
+LVS BOX EDFFTRX4
+LVS BOX EDFFTRXL
+LVS BOX EDFFX1
+LVS BOX EDFFX2
+LVS BOX EDFFX4
+LVS BOX EDFFXL
+//LVS BOX FILL16
+//LVS BOX FILL1
+//LVS BOX FILL2
+//LVS BOX FILL32
+//LVS BOX FILL4
+//LVS BOX FILL64
+//LVS BOX FILL8
+LVS BOX HOLDX1
+LVS BOX INVX12
+LVS BOX INVX16
+LVS BOX INVX1
+LVS BOX INVX20
+LVS BOX INVX2
+LVS BOX INVX3
+LVS BOX INVX4
+LVS BOX INVX6
+LVS BOX INVX8
+LVS BOX INVXL
+LVS BOX MDFFHQX1
+LVS BOX MDFFHQX2
+LVS BOX MDFFHQX4
+LVS BOX MDFFHQX8
+LVS BOX MX2X1
+LVS BOX MX2X2
+LVS BOX MX2X4
+LVS BOX MX2X6
+LVS BOX MX2X8
+LVS BOX MX2XL
+LVS BOX MX3X1
+LVS BOX MX3X2
+LVS BOX MX3X4
+LVS BOX MX3XL
+LVS BOX MX4X1
+LVS BOX MX4X2
+LVS BOX MX4X4
+LVS BOX MX4XL
+LVS BOX MXI2X1
+LVS BOX MXI2X2
+LVS BOX MXI2X4
+LVS BOX MXI2X6
+LVS BOX MXI2X8
+LVS BOX MXI2XL
+LVS BOX MXI3X1
+LVS BOX MXI3X2
+LVS BOX MXI3X4
+LVS BOX MXI3XL
+LVS BOX MXI4X1
+LVS BOX MXI4X2
+LVS BOX MXI4X4
+LVS BOX MXI4XL
+LVS BOX NAND2BX1
+LVS BOX NAND2BX2
+LVS BOX NAND2BX4
+LVS BOX NAND2BXL
+LVS BOX NAND2X1
+LVS BOX NAND2X2
+LVS BOX NAND2X4
+LVS BOX NAND2X6
+LVS BOX NAND2X8
+LVS BOX NAND2XL
+LVS BOX NAND3BX1
+LVS BOX NAND3BX2
+LVS BOX NAND3BX4
+LVS BOX NAND3BXL
+LVS BOX NAND3X1
+LVS BOX NAND3X2
+LVS BOX NAND3X4
+LVS BOX NAND3X6
+LVS BOX NAND3X8
+LVS BOX NAND3XL
+LVS BOX NAND4BBX1
+LVS BOX NAND4BBX2
+LVS BOX NAND4BBX4
+LVS BOX NAND4BBXL
+LVS BOX NAND4BX1
+LVS BOX NAND4BX2
+LVS BOX NAND4BX4
+LVS BOX NAND4BXL
+LVS BOX NAND4X1
+LVS BOX NAND4X2
+LVS BOX NAND4X4
+LVS BOX NAND4X6
+LVS BOX NAND4X8
+LVS BOX NAND4XL
+LVS BOX NOR2BX1
+LVS BOX NOR2BX2
+LVS BOX NOR2BX4
+LVS BOX NOR2BXL
+LVS BOX NOR2X1
+LVS BOX NOR2X2
+LVS BOX NOR2X4
+LVS BOX NOR2X6
+LVS BOX NOR2X8
+LVS BOX NOR2XL
+LVS BOX NOR3BX1
+LVS BOX NOR3BX2
+LVS BOX NOR3BX4
+LVS BOX NOR3BXL
+LVS BOX NOR3X1
+LVS BOX NOR3X2
+LVS BOX NOR3X4
+LVS BOX NOR3X6
+LVS BOX NOR3X8
+LVS BOX NOR3XL
+LVS BOX NOR4BBX1
+LVS BOX NOR4BBX2
+LVS BOX NOR4BBX4
+LVS BOX NOR4BBXL
+LVS BOX NOR4BX1
+LVS BOX NOR4BX2
+LVS BOX NOR4BX4
+LVS BOX NOR4BXL
+LVS BOX NOR4X1
+LVS BOX NOR4X2
+LVS BOX NOR4X4
+LVS BOX NOR4X6
+LVS BOX NOR4X8
+LVS BOX NOR4XL
+LVS BOX OA21X1
+LVS BOX OA21X2
+LVS BOX OA21X4
+LVS BOX OA21XL
+LVS BOX OA22X1
+LVS BOX OA22X2
+LVS BOX OA22X4
+LVS BOX OA22XL
+LVS BOX OAI211X1
+LVS BOX OAI211X2
+LVS BOX OAI211X4
+LVS BOX OAI211XL
+LVS BOX OAI21X1
+LVS BOX OAI21X2
+LVS BOX OAI21X4
+LVS BOX OAI21XL
+LVS BOX OAI221X1
+LVS BOX OAI221X2
+LVS BOX OAI221X4
+LVS BOX OAI221XL
+LVS BOX OAI222X1
+LVS BOX OAI222X2
+LVS BOX OAI222X4
+LVS BOX OAI222XL
+LVS BOX OAI22X1
+LVS BOX OAI22X2
+LVS BOX OAI22X4
+LVS BOX OAI22XL
+LVS BOX OAI2BB1X1
+LVS BOX OAI2BB1X2
+LVS BOX OAI2BB1X4
+LVS BOX OAI2BB1XL
+LVS BOX OAI2BB2X1
+LVS BOX OAI2BB2X2
+LVS BOX OAI2BB2X4
+LVS BOX OAI2BB2XL
+LVS BOX OAI31X1
+LVS BOX OAI31X2
+LVS BOX OAI31X4
+LVS BOX OAI31XL
+LVS BOX OAI32X1
+LVS BOX OAI32X2
+LVS BOX OAI32X4
+LVS BOX OAI32XL
+LVS BOX OAI33X1
+LVS BOX OAI33X2
+LVS BOX OAI33X4
+LVS BOX OAI33XL
+LVS BOX OR2X1
+LVS BOX OR2X2
+LVS BOX OR2X4
+LVS BOX OR2X6
+LVS BOX OR2X8
+LVS BOX OR2XL
+LVS BOX OR3X1
+LVS BOX OR3X2
+LVS BOX OR3X4
+LVS BOX OR3X6
+LVS BOX OR3X8
+LVS BOX OR3XL
+LVS BOX OR4X1
+LVS BOX OR4X2
+LVS BOX OR4X4
+LVS BOX OR4X6
+LVS BOX OR4X8
+LVS BOX OR4XL
+LVS BOX RF1R1WX1
+LVS BOX RF2R1WX1
+LVS BOX RFRDX1
+LVS BOX RFRDX2
+LVS BOX RFRDX4
+LVS BOX SDFFHQX1
+LVS BOX SDFFHQX2
+LVS BOX SDFFHQX4
+LVS BOX SDFFHQX8
+LVS BOX SDFFNSRX1
+LVS BOX SDFFNSRX2
+LVS BOX SDFFNSRX4
+LVS BOX SDFFNSRXL
+LVS BOX SDFFQX1
+LVS BOX SDFFQX2
+LVS BOX SDFFQX4
+LVS BOX SDFFQXL
+LVS BOX SDFFRHQX1
+LVS BOX SDFFRHQX2
+LVS BOX SDFFRHQX4
+LVS BOX SDFFRHQX8
+LVS BOX SDFFRX1
+LVS BOX SDFFRX2
+LVS BOX SDFFRX4
+LVS BOX SDFFRXL
+LVS BOX SDFFSHQX1
+LVS BOX SDFFSHQX2
+LVS BOX SDFFSHQX4
+LVS BOX SDFFSHQX8
+LVS BOX SDFFSRHQX1
+LVS BOX SDFFSRHQX2
+LVS BOX SDFFSRHQX4
+LVS BOX SDFFSRHQX8
+LVS BOX SDFFSRX1
+LVS BOX SDFFSRX2
+LVS BOX SDFFSRX4
+LVS BOX SDFFSRXL
+LVS BOX SDFFSX1
+LVS BOX SDFFSX2
+LVS BOX SDFFSX4
+LVS BOX SDFFSXL
+LVS BOX SDFFTRX1
+LVS BOX SDFFTRX2
+LVS BOX SDFFTRX4
+LVS BOX SDFFTRXL
+LVS BOX SDFFX1
+LVS BOX SDFFX2
+LVS BOX SDFFX4
+LVS BOX SDFFXL
+LVS BOX SEDFFHQX1
+LVS BOX SEDFFHQX2
+LVS BOX SEDFFHQX4
+LVS BOX SEDFFHQX8
+LVS BOX SEDFFTRX1
+LVS BOX SEDFFTRX2
+LVS BOX SEDFFTRX4
+LVS BOX SEDFFTRXL
+LVS BOX SEDFFX1
+LVS BOX SEDFFX2
+LVS BOX SEDFFX4
+LVS BOX SEDFFXL
+LVS BOX SMDFFHQX1
+LVS BOX SMDFFHQX2
+LVS BOX SMDFFHQX4
+LVS BOX SMDFFHQX8
+LVS BOX TBUFX12
+LVS BOX TBUFX16
+LVS BOX TBUFX1
+LVS BOX TBUFX20
+LVS BOX TBUFX2
+LVS BOX TBUFX3
+LVS BOX TBUFX4
+LVS BOX TBUFX6
+LVS BOX TBUFX8
+LVS BOX TBUFXL
+LVS BOX TIEHI
+LVS BOX TIELO
+LVS BOX TLATNCAX12
+LVS BOX TLATNCAX16
+LVS BOX TLATNCAX20
+LVS BOX TLATNCAX2
+LVS BOX TLATNCAX3
+LVS BOX TLATNCAX4
+LVS BOX TLATNCAX6
+LVS BOX TLATNCAX8
+LVS BOX TLATNSRX1
+LVS BOX TLATNSRX2
+LVS BOX TLATNSRX4
+LVS BOX TLATNSRXL
+LVS BOX TLATNTSCAX12
+LVS BOX TLATNTSCAX16
+LVS BOX TLATNTSCAX20
+LVS BOX TLATNTSCAX2
+LVS BOX TLATNTSCAX3
+LVS BOX TLATNTSCAX4
+LVS BOX TLATNTSCAX6
+LVS BOX TLATNTSCAX8
+LVS BOX TLATNX1
+LVS BOX TLATNX2
+LVS BOX TLATNX4
+LVS BOX TLATNXL
+LVS BOX TLATSRX1
+LVS BOX TLATSRX2
+LVS BOX TLATSRX4
+LVS BOX TLATSRXL
+LVS BOX TLATX1
+LVS BOX TLATX2
+LVS BOX TLATX4
+LVS BOX TLATXL
+LVS BOX XNOR2X1
+LVS BOX XNOR2X2
+LVS BOX XNOR2X4
+LVS BOX XNOR2XL
+LVS BOX XNOR3X1
+LVS BOX XNOR3X2
+LVS BOX XNOR3X4
+LVS BOX XNOR3XL
+LVS BOX XOR2X1
+LVS BOX XOR2X2
+LVS BOX XOR2X4
+LVS BOX XOR2XL
+LVS BOX XOR3X1
+LVS BOX XOR3X2
+LVS BOX XOR3X4
+LVS BOX XOR3XL
+// tpd013n3
+//LVS BOX PAD60N
+//LVS BOX PCORNERN
+LVS BOX PDC0102CDG
+LVS BOX PDC0204CDG
+LVS BOX PDC0408CDG
+LVS BOX PDC1216CDG
+LVS BOX PDS0102CDG
+LVS BOX PDS0204CDG
+LVS BOX PDS0408CDG
+LVS BOX PDS1216CDG
+//LVS BOX PFEED0005N
+//LVS BOX PFEED001N
+//LVS BOX PFEED01N
+//LVS BOX PFEED10N
+//LVS BOX PFEED1N
+//LVS BOX PFEED20N
+//LVS BOX PFEED5N
+LVS BOX PRC0102CDG
+LVS BOX PRC0204CDG
+LVS BOX PRC0408CDG
+LVS BOX PRC1216CDG
+LVS BOX PRS0102CDG
+LVS BOX PRS0204CDG
+LVS BOX PRS0408CDG
+LVS BOX PRS1216CDG
+//LVS BOX PVDD1CDG
+//LVS BOX PVDD2CDG
+//LVS BOX PVDD2POC
+//LVS BOX PVSS1CDG
+//LVS BOX PVSS2CDG
+//LVS BOX PVSS3CDG
+LVS BOX PXOE1CDG
+LVS BOX PXOE2CDG
+// tpz013g3
+//LVS BOX PADIZ40
+//LVS BOX PADIZ45
+//LVS BOX PADLZ60
+//LVS BOX PADLZ85
+//LVS BOX PADOZ40
+//LVS BOX PADOZ45
+LVS BOX PCI33DGZ
+LVS BOX PCI33SDGZ
+LVS BOX PCI66DGZ
+LVS BOX PCI66SDGZ
+//LVS BOX PCORNERDGZ
+LVS BOX PDB02DGZ
+LVS BOX PDB02SDGZ
+LVS BOX PDB04DGZ
+LVS BOX PDB04SDGZ
+LVS BOX PDB08DGZ
+LVS BOX PDB08SDGZ
+LVS BOX PDB12DGZ
+LVS BOX PDB12SDGZ
+LVS BOX PDB16DGZ
+LVS BOX PDB16SDGZ
+LVS BOX PDB24DGZ
+LVS BOX PDB24SDGZ
+LVS BOX PDD02DGZ
+LVS BOX PDD02SDGZ
+LVS BOX PDD04DGZ
+LVS BOX PDD04SDGZ
+LVS BOX PDD08DGZ
+LVS BOX PDD08SDGZ
+LVS BOX PDD12DGZ
+LVS BOX PDD12SDGZ
+LVS BOX PDD16DGZ
+LVS BOX PDD16SDGZ
+LVS BOX PDD24DGZ
+LVS BOX PDD24SDGZ
+LVS BOX PDDDGZ
+LVS BOX PDDSDGZ
+LVS BOX PDDW02DGZ
+LVS BOX PDDW04DGZ
+LVS BOX PDDW08DGZ
+LVS BOX PDDW12DGZ
+LVS BOX PDDW16DGZ
+LVS BOX PDDW24DGZ
+LVS BOX PDDWDGZ
+LVS BOX PDIDGZ
+LVS BOX PDISDGZ
+LVS BOX PDO02CDG
+LVS BOX PDO04CDG
+LVS BOX PDO08CDG
+LVS BOX PDO12CDG
+LVS BOX PDO16CDG
+LVS BOX PDO24CDG
+LVS BOX PDT02DGZ
+LVS BOX PDT04DGZ
+LVS BOX PDT08DGZ
+LVS BOX PDT12DGZ
+LVS BOX PDT16DGZ
+LVS BOX PDT24DGZ
+LVS BOX PDU02DGZ
+LVS BOX PDU02SDGZ
+LVS BOX PDU04DGZ
+LVS BOX PDU04SDGZ
+LVS BOX PDU08DGZ
+LVS BOX PDU08SDGZ
+LVS BOX PDU12DGZ
+LVS BOX PDU12SDGZ
+LVS BOX PDU16DGZ
+LVS BOX PDU16SDGZ
+LVS BOX PDU24DGZ
+LVS BOX PDU24SDGZ
+LVS BOX PDUDGZ
+LVS BOX PDUSDGZ
+LVS BOX PDUW02DGZ
+LVS BOX PDUW04DGZ
+LVS BOX PDUW08DGZ
+LVS BOX PDUW12DGZ
+LVS BOX PDUW16DGZ
+LVS BOX PDUW24DGZ
+LVS BOX PDUWDGZ
+LVS BOX PDXO01DG
+LVS BOX PDXO02DG
+LVS BOX PDXO03DG
+LVS BOX PDXOE1DG
+LVS BOX PDXOE2DG
+LVS BOX PDXOE3DG
+//LVS BOX PFEED0_005Z
+//LVS BOX PFEED0_01Z
+//LVS BOX PFEED0_1Z
+//LVS BOX PFEED10Z
+//LVS BOX PFEED1Z
+//LVS BOX PFEED20Z
+//LVS BOX PFEED5Z
+LVS BOX PRB08DGZ
+LVS BOX PRB08SDGZ
+LVS BOX PRB12DGZ
+LVS BOX PRB12SDGZ
+LVS BOX PRB16DGZ
+LVS BOX PRB16SDGZ
+LVS BOX PRB24DGZ
+LVS BOX PRB24SDGZ
+LVS BOX PRD08DGZ
+LVS BOX PRD08SDGZ
+LVS BOX PRD12DGZ
+LVS BOX PRD12SDGZ
+LVS BOX PRD16DGZ
+LVS BOX PRD16SDGZ
+LVS BOX PRD24DGZ
+LVS BOX PRD24SDGZ
+LVS BOX PRDW08DGZ
+LVS BOX PRDW12DGZ
+LVS BOX PRDW16DGZ
+LVS BOX PRDW24DGZ
+LVS BOX PRO08CDG
+LVS BOX PRO12CDG
+LVS BOX PRO16CDG
+LVS BOX PRO24CDG
+LVS BOX PRT08DGZ
+LVS BOX PRT12DGZ
+LVS BOX PRT16DGZ
+LVS BOX PRT24DGZ
+LVS BOX PRU08DGZ
+LVS BOX PRU08SDGZ
+LVS BOX PRU12DGZ
+LVS BOX PRU12SDGZ
+LVS BOX PRU16DGZ
+LVS BOX PRU16SDGZ
+LVS BOX PRU24DGZ
+LVS BOX PRU24SDGZ
+LVS BOX PRUW08DGZ
+LVS BOX PRUW12DGZ
+LVS BOX PRUW16DGZ
+LVS BOX PRUW24DGZ
+//LVS BOX PVDD1DGZ
+//LVS BOX PVDD2DGZ
+//LVS BOX PVDD2POC
+//LVS BOX PVSS1DGZ
+//LVS BOX PVSS2DGZ
+//LVS BOX PVSS3DGZ
+//#############################

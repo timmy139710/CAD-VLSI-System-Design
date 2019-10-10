@@ -1,0 +1,16 @@
+#
+Lab or2 symbol
+I2
+#
+Lab half_adder symbol
+I1
+I0
+#ISCELL
+basic ipin symbol
+PIN2
+PIN1
+PIN0
+#ISCELL
+basic opin symbol
+PIN4
+PIN3

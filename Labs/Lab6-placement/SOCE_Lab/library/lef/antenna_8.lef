@@ -1,0 +1,606 @@
+###############################################################################
+#TSMC Library/IP Product
+#Filename: antenna_8.lef
+#Technology: CL013G
+#Product Type: Standard I/O
+#Product Name: tpd013n3
+#Version: 210a
+###############################################################################
+# 
+#STATEMENT OF USE
+#
+#This information contains confidential and proprietary information of TSMC.
+#No part of this information may be reproduced, transmitted, transcribed,
+#stored in a retrieval system, or translated into any human or computer
+#language, in any form or by any means, electronic, mechanical, magnetic,
+#optical, chemical, manual, or otherwise, without the prior written permission
+#of TSMC. This information was prepared for informational purpose and is for
+#use by TSMC's customers only. TSMC reserves the right to make changes in the
+#information at any time and without notice.
+# 
+###############################################################################
+
+LAYER METAL1
+    Thickness 0.260000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL1
+
+LAYER METAL2
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL2
+
+LAYER METAL3
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL3
+
+LAYER METAL4
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL4
+
+LAYER METAL5
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL5
+
+LAYER METAL6
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL6
+
+LAYER METAL7
+    Thickness 0.350000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 43072.96 ) ( 0.5 43228 ) ( 1 43456 ) ( 1.5 43684 ) ) ;
+END METAL7
+
+LAYER METAL8
+    Thickness 0.900000 ;
+    AntennaCumAreaRatio 600.000000 ;
+    AntennaCumDiffAreaRatio PWL ( ( 0 600 ) ( 0.159 600 ) ( 0.160 51280 ) ( 0.5 54000 ) ( 1 58000 ) ( 1.5 62000 ) ) ;
+END METAL8
+
+LAYER VIA12
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA12
+
+LAYER VIA23
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA23
+
+LAYER VIA34
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA34
+
+LAYER VIA45
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA45
+
+LAYER VIA56
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA56
+
+LAYER VIA67
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA67
+
+LAYER VIA78
+    AntennaAreaRatio 20.000000 ;
+    AntennaDiffAreaRatio PWL ( ( 0 20 ) ( 0.159 20 ) ( 0.160 933.6 ) ( 0.5 1005 ) ( 1 1110 ) ( 1.5 1215 ) ) ;
+END VIA78
+
+MACRO PDC0102CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2147.310000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDC0102CDG
+
+MACRO PDC0204CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2157.810000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDC0204CDG
+
+MACRO PDC0408CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2333.370000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDC0408CDG
+
+MACRO PDC1216CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2054.920000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDC1216CDG
+
+MACRO PDS0102CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2147.310000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDS0102CDG
+
+MACRO PDS0204CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2157.810000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDS0204CDG
+
+MACRO PDS0408CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2333.370000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDS0408CDG
+
+MACRO PDS1216CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2054.920000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PDS1216CDG
+
+MACRO PRC0102CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2147.310000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRC0102CDG
+
+MACRO PRC0204CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2157.810000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRC0204CDG
+
+MACRO PRC0408CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2333.370000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRC0408CDG
+
+MACRO PRC1216CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 8.000000 ;
+        AntennaDiffArea 2054.920000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRC1216CDG
+
+MACRO PRS0102CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2147.310000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRS0102CDG
+
+MACRO PRS0204CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2157.810000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRS0204CDG
+
+MACRO PRS0408CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2333.370000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRS0408CDG
+
+MACRO PRS1216CDG
+    PIN C
+        AntennaDiffArea 5.340000 ;
+    END C
+    PIN DS
+        AntennaGateArea 4.850000 ;
+    END DS
+    PIN I
+        AntennaGateArea 4.500000 ;
+    END I
+    PIN IE
+        AntennaGateArea 6.500000 ;
+    END IE
+    PIN OEN
+        AntennaGateArea 3.750000 ;
+    END OEN
+    PIN PAD
+        AntennaGateArea 19.200000 ;
+        AntennaDiffArea 2054.920000 ;
+    END PAD
+    PIN PE
+        AntennaGateArea 3.000000 ;
+    END PE
+    PIN PS
+        AntennaGateArea 3.600000 ;
+    END PS
+END PRS1216CDG
+
+MACRO PVDD1CDG
+    PIN VDD
+        AntennaDiffArea 1816.634000 ;
+    END VDD
+END PVDD1CDG
+
+MACRO PVSS1CDG
+    PIN VSS
+        AntennaDiffArea 1908.552000 ;
+    END VSS
+END PVSS1CDG
+
+MACRO PVSS3CDG
+    PIN VSS
+        AntennaDiffArea 1568.138000 ;
+    END VSS
+END PVSS3CDG
+
+MACRO PXOE1CDG
+    PIN XC
+        AntennaDiffArea 6.720000 ;
+    END XC
+    PIN XE
+        AntennaGateArea 4.850000 ;
+    END XE
+    PIN XI
+        AntennaGateArea 74.000000 ;
+        AntennaDiffArea 2330.720000 ;
+    END XI
+    PIN XO
+        AntennaGateArea 14.400000 ;
+        AntennaDiffArea 1975.460000 ;
+    END XO
+END PXOE1CDG
+
+MACRO PXOE2CDG
+    PIN XC
+        AntennaDiffArea 6.720000 ;
+    END XC
+    PIN XE
+        AntennaGateArea 4.850000 ;
+    END XE
+    PIN XI
+        AntennaGateArea 74.000000 ;
+        AntennaDiffArea 2330.720000 ;
+    END XI
+    PIN XO
+        AntennaGateArea 14.400000 ;
+        AntennaDiffArea 1975.460000 ;
+    END XO
+END PXOE2CDG
+
+END LIBRARY

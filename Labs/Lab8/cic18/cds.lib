@@ -1,0 +1,5 @@
+DEFINE analogLib $CDS_INST_DIR/tools/dfII/etc/cdslib/artist/analogLib 
+DEFINE basic $CDS_INST_DIR/tools/dfII/etc/cdslib/basic
+
+DEFINE CIC18LIB ./CIC18LIB
+DEFINE Lab ./Lab

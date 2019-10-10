@@ -1,0 +1,18 @@
+#
+CIC18LIB P_18 symbol
+M1
+#
+CIC18LIB N_18 symbol
+M0
+#ISCELL
+analogLib vdd symbol
+I0
+#ISCELL
+analogLib gnd symbol
+I1
+#ISCELL
+basic ipin symbol
+PIN0
+#ISCELL
+basic opin symbol
+PIN1

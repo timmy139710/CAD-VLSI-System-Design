@@ -1,0 +1,18 @@
+#
+Lab or2 symbol
+I4
+#
+Lab and2 symbol
+I2
+I3
+#
+Lab inv symbol
+I0
+I1
+#ISCELL
+basic ipin symbol
+PIN1
+PIN0
+#ISCELL
+basic opin symbol
+PIN2

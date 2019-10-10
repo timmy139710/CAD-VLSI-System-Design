@@ -1,0 +1,49 @@
+Version: 1 
+Pad: CORNER0        NW  PCORNERDGZ
+Pad: ipad_X0         N
+Pad: ipad_HALT       N
+Pad: ipad_RESET_     N
+Pad: ipad_DoDCT      N
+Pad: ipad_Mode       N
+Pad: ipad_CoreVDD1   N   PVDD1DGZ
+Pad: ipad_CLK        N
+Pad: ipad_CoreVSS1   N   PVSS1DGZ
+Pad: ipad_SCAN_IN    N
+Pad: ipad_SCAN_EN    N
+ 
+Pad: CORNER1        NE  PCORNERDGZ
+Pad: ipad_X10        W
+Pad: ipad_X9         W
+Pad: ipad_X8         W
+Pad: ipad_X7         W
+Pad: ipad_X6         W
+Pad: ipad_X5         W
+Pad: ipad_X4         W
+Pad: ipad_X3         W
+Pad: ipad_X2         W
+Pad: ipad_X1         W
+ 
+Pad: CORNER2        SW  PCORNERDGZ
+Pad: ipad_X11        S
+Pad: ipad_IOVDD1     S   PVDD2POC
+Pad: ipad_IOVSS1     S   PVSS2DGZ
+Pad: opad_SCAN_OUT   S
+Pad: opad_Z0         S
+Pad: opad_Z1         S
+Pad: ipad_CoreVDD2   S   PVDD1DGZ
+Pad: opad_Z2         S
+Pad: opad_Z3         S
+Pad: opad_Z4         S
+ 
+Pad: CORNER3        SE  PCORNERDGZ
+Pad: ipad_IOVDD2     E   PVDD2DGZ
+Pad: ipad_IOVSS2     E   PVSS2DGZ
+Pad: opad_Z5         E
+Pad: opad_Z6         E
+Pad: opad_Z7         E
+Pad: ipad_CoreVSS2   E   PVSS1DGZ
+Pad: opad_Z8         E
+Pad: opad_Z9         E
+Pad: opad_Z10        E
+Pad: opad_Z11        E
+

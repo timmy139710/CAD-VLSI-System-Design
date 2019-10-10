@@ -1,0 +1,13 @@
+#
+Lab nand2 symbol
+I1
+#
+Lab inv symbol
+I0
+#ISCELL
+basic opin symbol
+PIN0
+#ISCELL
+basic ipin symbol
+PIN2
+PIN1

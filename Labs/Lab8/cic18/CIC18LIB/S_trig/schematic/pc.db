@@ -1,0 +1,18 @@
+#
+CIC18LIB N_18 symbol
+M5
+M4
+M3
+#
+CIC18LIB P_18 symbol
+M2
+M1
+M0
+#ISCELL
+basic opin symbol
+PIN0
+#ISCELL
+basic ipin symbol
+PIN3
+PIN2
+PIN1

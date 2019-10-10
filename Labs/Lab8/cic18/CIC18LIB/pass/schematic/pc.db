@@ -1,0 +1,16 @@
+#
+CIC18LIB N_18 spectre
+M0
+#
+CIC18LIB P_18 spectre
+M1
+#ISCELL
+basic ipin symbol
+PIN5
+PIN4
+PIN3
+PIN2
+#ISCELL
+basic iopin symbolr
+PIN7
+PIN6
