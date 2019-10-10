@@ -1,8 +1,8 @@
 # Computer-Aided VLSI System design (CVSD) 
 EEE 5022, Spring 2017, National Taiwan University (NTU)
 
-[Note]:
-1. This is the core course of NTU Graduate Institute of Electronics Engineering in Integrated Circuit Deisgn track.
+### Course Summary
+1. This is the core course in Integrated Circuit Deisgn (ICS) track of NTU Graduate Institute of Electronics Engineering .
 2. It provides a comprehensive training in digital IC design flow, including but not limited to RTL coding (Verilog), Synthesis, DFT/ATPG, Static Timing Analysis, Placement and Routing, DRC/LVS, Verification.
 3. Homeworks and Final Projects related to RTL coding (Verilog) are available on this repo.
 
