@@ -1,5 +1,5 @@
 # Computer-Aided VLSI System design (CVSD) 
-EEE 5022, 2018 Spring, National Taiwan University (NTU)
+EEE 5022, Spring 2017, National Taiwan University (NTU)
 
 [Note]:
 1. This is the core course of NTU Graduate Institute of Electronics Engineering in Integrated Circuit Deisgn track.
