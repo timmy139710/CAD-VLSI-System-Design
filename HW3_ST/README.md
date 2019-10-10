@@ -1,6 +1,6 @@
 # HW3 - Local Median Filter Engine
 
-## Summary:
+### Summary:
 Design a Local Median Filter Engine (LMFE):  
 1. Input image is 128x128 gray-scale image.  
 2. Median filter size is 7x7.  

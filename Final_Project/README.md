@@ -1,6 +1,6 @@
-# Final Project - Auto-Scaling Digital Photo Album with Transition Effect
+# Auto-Scaling Digital Photo Album with Transition Effect
 
-## Summary:  
+### Summary:  
 Design a digital photo album which supports the following features:  
 1. Frame size is 256x256, and input photo is in RGB format.
 2. Be able to display the current time.

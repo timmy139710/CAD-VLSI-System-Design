@@ -1,6 +1,6 @@
 # HW2 - Frequency Analysis System
 
-## Summary:  
+### Summary:  
 Design a Frequency Analysis System, including  
 1. FIR filter: 16 taps lowpass filter 
 2. Fast Fourier Transform (FFT): 16-pts FFT  
