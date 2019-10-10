@@ -1,0 +1,49 @@
+Version: 1 
+Pad: CORNER0        NW  PCORNERDGZ
+Pad: ipad_dummy0     N   PDIDGZ
+Pad: ipad_Din0       N
+Pad: ipad_in_en      N
+Pad: ipad_reset      N
+Pad: ipad_CoreVDD1   N   PVDD1DGZ
+Pad: ipad_clk        N
+Pad: ipad_CoreVSS1   N   PVSS1DGZ
+Pad: opad_busy       N
+Pad: opad_dummy1     N   PDIDGZ
+Pad: opad_dummy2     N   PDIDGZ
+ 
+Pad: CORNER1        NE  PCORNERDGZ
+Pad: ipad_dummy3     W   PDIDGZ
+Pad: ipad_dummy4     W   PDIDGZ
+Pad: ipad_Din7       W
+Pad: ipad_Din6       W
+Pad: ipad_Din5       W
+Pad: ipad_Din4       W
+Pad: ipad_Din3       W
+Pad: ipad_Din2       W
+Pad: ipad_Din1       W
+Pad: ipad_dummy5     W   PDIDGZ
+ 
+Pad: CORNER2        SW  PCORNERDGZ
+Pad: ipad_dummy6     S   PDIDGZ
+Pad: ipad_dummy7     S   PDIDGZ
+Pad: ipad_IOVDD1     S   PVDD2POC
+Pad: ipad_IOVSS1     S   PVSS2DGZ
+Pad: ipad_CoreVDD2   S   PVDD1DGZ
+Pad: opad_out_valid  S
+Pad: opad_Dout0      S
+Pad: opad_Dout1      S
+Pad: opad_Dout2      S
+Pad: opad_dummy8     S   PDIDGZ
+ 
+Pad: CORNER3        SE  PCORNERDGZ
+Pad: ipad_IOVDD2     E   PVDD2DGZ
+Pad: ipad_IOVSS2     E   PVSS2DGZ
+Pad: opad_Dout3      E
+Pad: opad_Dout4      E
+Pad: opad_Dout5      E
+Pad: opad_Dout6      E
+Pad: opad_Dout7      E
+Pad: opad_dummy9     E   PDIDGZ
+Pad: opad_dummy10    E   PDIDGZ
+Pad: opad_dummy11    E   PDIDGZ
+

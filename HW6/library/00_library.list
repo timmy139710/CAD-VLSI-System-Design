@@ -1,0 +1,67 @@
+
+The required library files for this lab are listed below:
+
+RF2SH64x16.spec
+addIoFiller_tpz.cmd
+addbonding_tpz.pl
+io_tpz.list
+streamOut.map
+tsmc013.capTbl
+calibre/
+        cdsinit
+        drc/
+                CL13S_8M.21d
+                Calibre-drc-cur
+        lvs/
+                CL013G_1P8M.lvs
+                Calibre-lvs-cur
+                RF2SH64x16.spi
+                RF2SH64x16.v
+                tpd013n3_lvs.spi
+                tpd013n3_lvs.v
+                tpz013g3_lvs.spi
+                tpz013g3_lvs.v
+                tsmc13gfsg_fram_lvs.spi
+                tsmc13gfsg_fram_lvs.v
+celtic/
+        fast.cdB
+        slow.cdB
+        typical.cdB
+db/
+        RF2SH64x16_slow_syn.db
+        slow.db
+        tpz013g3wc.db
+gds/
+        tpz013g3_v1.1.gds
+        tsmc13gfsg_fram.gds
+lef/
+        RF2SH64x16.vclef
+        antenna_8.lef
+        tpz013g3_8lm_cic.lef
+        tsmc13fsg_8lm_cic.lef
+lib/
+        RF2SH64x16_fast@0C_syn.lib
+        RF2SH64x16_slow_syn.lib
+        RF2SH64x16_typical_syn.lib
+        fast.lib
+        slow.lib
+        tpz013g3lt.lib
+        tpz013g3tc.lib
+        tpz013g3wc.lib
+        typical.lib
+tsmc13_8lm.cl/
+        README.TXT
+        cells_1.geo
+        cells_1.nls
+        cells_1.pwr
+        icecaps_8lm.tch
+        index.cli
+        rulesets
+        vias_1.geo
+verilog/
+        RF2SH64x16.v
+        tpz013g3.v
+        tsmc13_neg.v
+virtuoso/
+        Virtuoso4.4_0.13um_Ver2.1a.1.tf
+        display.drf

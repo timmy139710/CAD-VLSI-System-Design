@@ -1,0 +1,90 @@
+(A)
+A-1.How many flip-flops are chained?
+    4515
+A-2.How many scan cells in every scan chain, respectively? 
+    scan chain #1 ~#15: 101 cells
+    scan chain #16~#45: 100 cells
+A-3.What are the inputs and outputs of these scan chains?
+    scan chain #1 : test_si1  --> test_so1
+    scan chain #2 : test_si2  --> test_so2
+    scan chain #3 : test_si3  --> test_so3
+    scan chain #4 : test_si4  --> test_so4
+    scan chain #5 : test_si5  --> test_so5
+    scan chain #6 : test_si6  --> test_so6
+    scan chain #7 : test_si7  --> test_so7
+    scan chain #8 : test_si8  --> test_so8
+    scan chain #9 : test_si9  --> test_so9
+    scan chain #10: test_si10 --> test_so10 
+    scan chain #11: test_si11 --> test_so11 
+    scan chain #12: test_si12 --> test_so12 
+    scan chain #13: test_si13 --> test_so13 
+    scan chain #14: test_si14 --> test_so14 
+    scan chain #15: test_si15 --> test_so15 
+    scan chain #16: test_si16 --> test_so16 
+    scan chain #17: test_si17 --> test_so17 
+    scan chain #18: test_si18 --> test_so18 
+    scan chain #19: test_si19 --> test_so19 
+    scan chain #20: test_si20 --> test_so20 
+    scan chain #21: test_si21 --> test_so21 
+    scan chain #22: test_si22 --> test_so22 
+    scan chain #23: test_si23 --> test_so23 
+    scan chain #24: test_si24 --> test_so24 
+    scan chain #25: test_si25 --> test_so25 
+    scan chain #26: test_si26 --> test_so26 
+    scan chain #27: test_si27 --> test_so27 
+    scan chain #28: test_si28 --> test_so28 
+    scan chain #29: test_si29 --> test_so29
+    scan chain #30: test_si30 --> test_so30
+    scan chain #31: test_si31 --> test_so31
+    scan chain #32: test_si32 --> test_so32
+    scan chain #33: test_si33 --> test_so33
+    scan chain #34: test_si34 --> test_so34
+    scan chain #35: test_si35 --> test_so35
+    scan chain #36: test_si36 --> test_so36
+    scan chain #37: test_si37 --> test_so37
+    scan chain #38: test_si38 --> test_so38
+    scan chain #39: test_si39 --> test_so39
+    scan chain #40: test_si40 --> test_so40
+    scan chain #41: test_si41 --> test_so41
+    scan chain #42: test_si42 --> test_so42
+    scan chain #43: test_si43 --> test_so43
+    scan chain #44: test_si44 --> test_so44
+    scan chain #45: test_si45 --> test_so45
+A-4.What is the name of the scan enable pin for your scan chain?
+    test_se
+
+(B)  
+B-1.What is the area before scan chain insertion?
+    1104404
+B-2.What is the area after scan chain insertion?   
+    1146227
+B-3.How much is the area overhead percentage of scan chain?     
+    3.79%
+B-4.Try to explain why scan chain introduces area overhead.     
+    Because scan Flip-Flops were inserted.
+
+
+(C) Ignore the input external and output external delay.     
+C-1.How long (ns) is the critical path delay before scan chain insertion? 
+    10.19
+C-2.How long the critical path after scan chain insertion?
+    10.40
+C-3.How many percent is the path delay overhead? If the endpoint of the critical path
+is a register type gate, consider the setup time in your critical path delay. Sometimes, 
+the most critical path changes. If your designs do so, try to explain why.
+    2.1%.
+    插入scan chain之後，電路中多了一些Flip-Flops，可能會動到setup time或是hold time的requirement，因此critical path可能會變。
+    
+C-4.Sometimes, the individual gate delay changes in the critical path. Try to explain why?
+    一開始做synthesis的時候，Design compiler對於constraints沒有壓很緊，所以電路還有優化的空間。但是當插完scan chain後，
+    會再對電路優化一次，對於某些gate，Design compiler可能會選用不同的cell來合成，因此單一gate的delay會變動。
+
+(D)  
+D-1.How many total faults (uncollapsed) are there in the circuit?
+    465600
+D-2.How many patterns do we have?
+    239
+D-3.What is the test coverage (%)?    
+    98.58 (collapsed)
+D-4.What is the fault coverage (%)? 
+    90.83 (collapsed)

@@ -1,0 +1,71 @@
+ 
+****************************************
+Report : Scan path
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 21:00:00 2018
+****************************************
+
+========================================
+TEST MODE: Internal_scan
+VIEW     : Existing DFT
+========================================
+
+========================================
+AS SPECIFIED BY USER
+========================================
+
+
+========================================
+AS BUILT BY insert_dft
+========================================
+
+Scan_path    Len   ScanDataIn  ScanDataOut ScanEnable  MasterClock SlaveClock
+-----------  ----- ----------- ----------- ----------- ----------- -----------
+I 1          101   test_si1    test_so1    test_se     clk         -
+I 2          101   test_si2    test_so2    test_se     clk         -
+I 3          101   test_si3    test_so3    test_se     clk         -
+I 4          101   test_si4    test_so4    test_se     clk         -
+I 5          101   test_si5    test_so5    test_se     clk         -
+I 6          101   test_si6    test_so6    test_se     clk         -
+I 7          101   test_si7    test_so7    test_se     clk         -
+I 8          101   test_si8    test_so8    test_se     clk         -
+I 9          101   test_si9    test_so9    test_se     clk         -
+I 10         101   test_si10   test_so10   test_se     clk         -
+I 11         101   test_si11   test_so11   test_se     clk         -
+I 12         101   test_si12   test_so12   test_se     clk         -
+I 13         101   test_si13   test_so13   test_se     clk         -
+I 14         101   test_si14   test_so14   test_se     clk         -
+I 15         101   test_si15   test_so15   test_se     clk         -
+I 16         100   test_si16   test_so16   test_se     clk         -
+I 17         100   test_si17   test_so17   test_se     clk         -
+I 18         100   test_si18   test_so18   test_se     clk         -
+I 19         100   test_si19   test_so19   test_se     clk         -
+I 20         100   test_si20   test_so20   test_se     clk         -
+I 21         100   test_si21   test_so21   test_se     clk         -
+I 22         100   test_si22   test_so22   test_se     clk         -
+I 23         100   test_si23   test_so23   test_se     clk         -
+I 24         100   test_si24   test_so24   test_se     clk         -
+I 25         100   test_si25   test_so25   test_se     clk         -
+I 26         100   test_si26   test_so26   test_se     clk         -
+I 27         100   test_si27   test_so27   test_se     clk         -
+I 28         100   test_si28   test_so28   test_se     clk         -
+I 29         100   test_si29   test_so29   test_se     clk         -
+I 30         100   test_si30   test_so30   test_se     clk         -
+I 31         100   test_si31   test_so31   test_se     clk         -
+I 32         100   test_si32   test_so32   test_se     clk         -
+I 33         100   test_si33   test_so33   test_se     clk         -
+I 34         100   test_si34   test_so34   test_se     clk         -
+I 35         100   test_si35   test_so35   test_se     clk         -
+I 36         100   test_si36   test_so36   test_se     clk         -
+I 37         100   test_si37   test_so37   test_se     clk         -
+I 38         100   test_si38   test_so38   test_se     clk         -
+I 39         100   test_si39   test_so39   test_se     clk         -
+I 40         100   test_si40   test_so40   test_se     clk         -
+I 41         100   test_si41   test_so41   test_se     clk         -
+I 42         100   test_si42   test_so42   test_se     clk         -
+I 43         100   test_si43   test_so43   test_se     clk         -
+I 44         100   test_si44   test_so44   test_se     clk         -
+I 45         100   test_si45   test_so45   test_se     clk         -
+
+1

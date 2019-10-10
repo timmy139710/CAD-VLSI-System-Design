@@ -1,0 +1,67 @@
+remove_design -all
+set search_path ". /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db"
+set link_path "* typical.db  fast.db  slow.db"
+
+read_verilog ./ALU_syn.v
+link_design ALU
+read_parasitics ALU.spef
+set_operating_conditions typical -library typical 
+
+create_clock -period 10 -waveform {0 5} [get_ports clk] 
+set design_clock [get_clock clk]
+set_clock_uncertainty 0.5 $design_clock 
+set_clock_latency -min 1.5 $design_clock 
+set_clock_latency -max 2.5 $design_clock 
+set_clock_transition -min 0.25 $design_clock 
+set_clock_transition -max 0.30 $design_clock 
+set_propagated_clock $design_clock
+
+set_wire_load_model -name "ForQA" -library "typical"
+set_wire_load_mode top
+
+report_design
+report_reference
+report_design >> Lab1_pt.report 
+report_reference >> Lab1_pt.report 
+
+set_input_delay 1.5 [get_ports inputA] -clock $design_clock 
+set_input_delay 1.5 [get_ports inputB] -clock $design_clock 
+set_input_delay 1.5 [get_ports instruction] -clock $design_clock 
+set_input_delay 1.5 [get_ports reset] -clock $design_clock 
+set_output_delay 1.5 [get_ports alu_out] -clock $design_clock
+
+check_timing
+report_timing
+report_bottleneck
+report_timing >> Lab1_pt.report 
+report_bottleneck >> Lab1_pt.report
+
+create_clock -period 2 -waveform {0 1.0} [get_ports clk] 
+report_timing
+report_timing >> Lab1_pt.report 
+
+create_clock -period 3.1 -waveform {0 1.55} [get_ports clk] 
+report_timing
+report_timing >> Lab1_pt.report 
+
+create_clock -period 10 -waveform {0 5.0} [get_ports clk] 
+set_output_delay 8 [get_ports alu_out] -clock $design_clock
+report_timing
+report_timing >> Lab1_pt.report 
+
+report_constraint 
+report_constraint -all_violators
+report_analysis_coverage
+report_constraint >> Lab1_pt.report 
+report_constraint -all_violators >> Lab1_pt.report 
+report_analysis_coverage >> Lab1_pt.report
+
+set_clock_uncertainty 0.0 $design_clock 
+report_constraint 
+report_constraint -all_violators
+report_analysis_coverage
+report_constraint >> Lab5_pt.report
+report_constraint -all_violators >> Lab5_pt.report 
+report_analysis_coverage >> Lab5_pt.report
+
+

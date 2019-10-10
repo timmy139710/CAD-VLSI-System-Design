@@ -1,0 +1,30 @@
+#user spec file, version 2004Q2V1
+#Wed Aug 04 01:39:03 CDT 2004
+prefix=
+frequency=1
+right_bus_delim=]
+ring_width=8
+power_type=rings
+pwr_gnd_rename=VDD:VDD,GND:VSS
+pin_space=0.0
+check_instname=on
+vert=met2
+name_case=upper
+mux=2
+synopsys.libname=USERLIB
+tlf.libname=USERLIB
+vclef-fp.site_def=off
+write_mask=off
+inside_ring_type=GND
+vclef-fp.inst2ring=blockages
+top_layer=met7
+bits=16
+instname=RF2SH64x16
+left_bus_delim=[
+horiz=met3
+acroread=acroread
+diodes=on
+drive=4
+cust_comment=
+wp_size=8
+words=64

@@ -1,0 +1,60 @@
+Loading db file '/home/raid7_2/userb03/b03095/CVSD/HW6_ref/Memory/sram_1024x8_t13/sram_1024x8_t13_slow_syn.db'
+Loading db file '/home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : LMFE
+Version: N-2017.09-SP2
+Date   : Sun Jun 10 21:03:40 2018
+****************************************
+
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+    sram_1024x8_t13 (File: /home/raid7_2/userb03/b03095/CVSD/HW6_ref/Memory/sram_1024x8_t13/sram_1024x8_t13_slow_syn.db)
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+LMFE                   tsmc13_wl10       slow
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  =   3.1575 mW   (97%)
+  Net Switching Power  =  98.1207 uW    (3%)
+                         ---------
+Total Dynamic Power    =   3.2556 mW  (100%)
+
+Cell Leakage Power     =  60.6821 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             1.6673        5.2357e-04        2.8000e+07            1.6959  (  51.14%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           1.4831        1.4490e-02        2.1297e+07            1.5189  (  45.80%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  7.0464e-03        8.3107e-02        1.1385e+07            0.1015  (   3.06%)
+--------------------------------------------------------------------------------------------------
+Total              3.1575 mW     9.8121e-02 mW     6.0682e+07 pW         3.3163 mW
+1

@@ -1,0 +1,1 @@
+restoreDesign [file dirname [file normalize [info script]]]/corefiller_v1.enc.dat CHIP

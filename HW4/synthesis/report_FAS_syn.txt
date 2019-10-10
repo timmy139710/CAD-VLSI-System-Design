@@ -1,0 +1,219 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 20:57:43 2018
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: point16/point8_1/point4_1_d4_reg_1_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: point16/point8_1/point4_1/point2_2_d2_reg_63_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FAS                tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  point16/point8_1/point4_1_d4_reg_1_/CK (DFFRX1)         0.00 #     0.50 r
+  point16/point8_1/point4_1_d4_reg_1_/Q (DFFRX1)          0.59       1.09 f
+  point16/point8_1/point4_1/d_i[1] (POINT4_3)             0.00       1.09 f
+  point16/point8_1/point4_1/U103/Y (BUFX8)                0.17       1.26 f
+  point16/point8_1/point4_1/sub_116/A[1] (POINT4_3_DW01_sub_3)
+                                                          0.00       1.26 f
+  point16/point8_1/point4_1/sub_116/U2_1/CO (ADDFHX4)     0.31       1.57 f
+  point16/point8_1/point4_1/sub_116/U2_2/CO (ADDFHX2)     0.24       1.81 f
+  point16/point8_1/point4_1/sub_116/U2_3/CO (ADDFHX4)     0.21       2.02 f
+  point16/point8_1/point4_1/sub_116/U2_4/CO (ADDFHX2)     0.22       2.24 f
+  point16/point8_1/point4_1/sub_116/U2_5/CO (ADDFHX2)     0.23       2.47 f
+  point16/point8_1/point4_1/sub_116/U2_6/CO (ADDFHX2)     0.25       2.72 f
+  point16/point8_1/point4_1/sub_116/U2_7/CO (ADDFHX4)     0.21       2.93 f
+  point16/point8_1/point4_1/sub_116/U2_8/CO (ADDFHX4)     0.20       3.14 f
+  point16/point8_1/point4_1/sub_116/U2_9/CO (ADDFHX4)     0.19       3.33 f
+  point16/point8_1/point4_1/sub_116/U2_10/CO (ADDFHX1)
+                                                          0.30       3.63 f
+  point16/point8_1/point4_1/sub_116/U2_11/S (ADDFHX2)     0.30       3.93 r
+  point16/point8_1/point4_1/sub_116/DIFF[11] (POINT4_3_DW01_sub_3)
+                                                          0.00       3.93 r
+  point16/point8_1/point4_1/sub_mult_116/B_27_ (POINT4_3_DW01_sub_2)
+                                                          0.00       3.93 r
+  point16/point8_1/point4_1/sub_mult_116/U79/Y (CLKINVX1)
+                                                          0.19       4.12 f
+  point16/point8_1/point4_1/sub_mult_116/U14/Y (AND2X2)
+                                                          0.28       4.39 f
+  point16/point8_1/point4_1/sub_mult_116/U15/Y (AND2X2)
+                                                          0.26       4.65 f
+  point16/point8_1/point4_1/sub_mult_116/U16/Y (AND2X2)
+                                                          0.26       4.90 f
+  point16/point8_1/point4_1/sub_mult_116/U18/Y (AND2X2)
+                                                          0.26       5.16 f
+  point16/point8_1/point4_1/sub_mult_116/U19/Y (AND2X2)
+                                                          0.26       5.42 f
+  point16/point8_1/point4_1/sub_mult_116/U20/Y (AND2X2)
+                                                          0.26       5.67 f
+  point16/point8_1/point4_1/sub_mult_116/U21/Y (AND2X2)
+                                                          0.27       5.94 f
+  point16/point8_1/point4_1/sub_mult_116/U43/Y (XOR2X1)
+                                                          0.44       6.38 r
+  point16/point8_1/point4_1/sub_mult_116/DIFF_34_ (POINT4_3_DW01_sub_2)
+                                                          0.00       6.38 r
+  point16/point8_1/point4_1/add_122/A[18] (POINT4_3_DW01_inc_1)
+                                                          0.00       6.38 r
+  point16/point8_1/point4_1/add_122/U1_1_18/CO (CMPR22X2)
+                                                          0.26       6.65 r
+  point16/point8_1/point4_1/add_122/U1_1_19/CO (ADDHX2)
+                                                          0.19       6.84 r
+  point16/point8_1/point4_1/add_122/U1_1_20/CO (ADDHX2)
+                                                          0.19       7.03 r
+  point16/point8_1/point4_1/add_122/U1_1_21/CO (ADDHX2)
+                                                          0.18       7.21 r
+  point16/point8_1/point4_1/add_122/U1_1_22/CO (ADDHX1)
+                                                          0.28       7.49 r
+  point16/point8_1/point4_1/add_122/U1_1_23/CO (ADDHX2)
+                                                          0.22       7.71 r
+  point16/point8_1/point4_1/add_122/U1_1_24/CO (ADDHX2)
+                                                          0.18       7.89 r
+  point16/point8_1/point4_1/add_122/U1_1_25/CO (ADDHX1)
+                                                          0.24       8.13 r
+  point16/point8_1/point4_1/add_122/U1_1_26/CO (ADDHXL)
+                                                          0.36       8.50 r
+  point16/point8_1/point4_1/add_122/U1_1_27/CO (ADDHX1)
+                                                          0.28       8.78 r
+  point16/point8_1/point4_1/add_122/U1_1_28/CO (ADDHXL)
+                                                          0.36       9.14 r
+  point16/point8_1/point4_1/add_122/U1_1_29/CO (ADDHX1)
+                                                          0.30       9.44 r
+  point16/point8_1/point4_1/add_122/U1_1_30/CO (ADDHX1)
+                                                          0.27       9.71 r
+  point16/point8_1/point4_1/add_122/U1/Y (XOR2X2)         0.21       9.92 f
+  point16/point8_1/point4_1/add_122/SUM[31] (POINT4_3_DW01_inc_1)
+                                                          0.00       9.92 f
+  point16/point8_1/point4_1/U132/Y (AO22X4)               0.28      10.19 f
+  point16/point8_1/point4_1/point2_2_d2_reg_63_/D (DFFRX1)
+                                                          0.00      10.19 f
+  data arrival time                                                 10.19
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.50      10.50
+  clock uncertainty                                      -0.10      10.40
+  point16/point8_1/point4_1/point2_2_d2_reg_63_/CK (DFFRX1)
+                                                          0.00      10.40 r
+  library setup time                                     -0.21      10.19
+  data required time                                                10.19
+  --------------------------------------------------------------------------
+  data required time                                                10.19
+  data arrival time                                                -10.19
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+
+
+ 
+
+ 
+****************************************
+Report : area
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 20:57:42 2018
+****************************************
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+
+Number of ports:                        35465
+Number of nets:                        110960
+Number of cells:                        66288
+Number of combinational cells:          61413
+Number of sequential cells:              4517
+Number of macros/black boxes:               0
+Number of buf/inv:                      16936
+Number of references:                     158
+
+Combinational area:             945312.615133
+Buf/Inv area:                    91971.920456
+Noncombinational area:          159092.205421
+Macro/Black Box area:                0.000000
+Net Interconnect area:         6768567.793182
+
+Total cell area:               1104404.820554
+Total area:                    7872972.613737
+
+
+
+
+
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 20:57:51 2018
+****************************************
+
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+FAS                    tsmc13_wl10       slow
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  =  11.1873 mW   (89%)
+  Net Switching Power  =   1.3959 mW   (11%)
+                         ---------
+Total Dynamic Power    =  12.5832 mW  (100%)
+
+Cell Leakage Power     =   1.1168 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register          10.7533        5.8031e-02        1.4235e+08           10.9537  (  79.95%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      0.4341            1.3378        9.7442e+08            2.7464  (  20.05%)
+--------------------------------------------------------------------------------------------------
+Total             11.1874 mW         1.3959 mW     1.1168e+09 pW        13.7001 mW
+
+
+

@@ -1,0 +1,17 @@
+remove_design -all
+set search_path ". /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db"
+set link_path "* typical.db  fast.db  slow.db"
+
+read_verilog ./DPA_syn.v
+current_design "DPA"
+link
+
+read_sdc DPA_pt.sdc
+
+read_parasitics DPA_syn.spef
+
+set power_enable_analysis "true"
+set power_analysis_mode "time_based"
+set_power_analysis_options -waveform_interval 1
+read_vcd DPA.vcd -time {1 -1} -strip_path test/DPA
+report_power -verbose -hierarchy

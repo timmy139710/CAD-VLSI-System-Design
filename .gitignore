@@ -1,0 +1,9 @@
+*.zip
+*.rar
+*.docx
+*v1/
+*v2/
+.synopsys_dc.setup
+.DS_Store
+*.pptx
+Final_Project/design_file/

@@ -1,0 +1,179 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 21:00:00 2018
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: point16/point8_2/point4_2/point2_2/b_o_d1_reg_25_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: freq[0] (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FAS                tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  point16/point8_2/point4_2/point2_2/b_o_d1_reg_25_/CK (SDFFRXL)
+                                                          0.00 #     0.50 r
+  point16/point8_2/point4_2/point2_2/b_o_d1_reg_25_/Q (SDFFRXL)
+                                                          0.86       1.36 r
+  point16/point8_2/point4_2/point2_2/U31/Y (BUFX20)       0.53       1.89 r
+  point16/point8_2/point4_2/point2_2/b_o[25] (POINT2_0_test_1)
+                                                          0.00       1.89 r
+  point16/point8_2/point4_2/d_o[25] (POINT4_0_test_1)     0.00       1.89 r
+  point16/point8_2/h_o[25] (POINT8_0_test_1)              0.00       1.89 r
+  point16/p_o[25] (POINT16_test_1)                        0.00       1.89 r
+  analysis/p[25] (ANA)                                    0.00       1.89 r
+  analysis/mult_590/a[9] (ANA_DW_mult_tc_10)              0.00       1.89 r
+  analysis/mult_590/U633/Y (INVXL)                        0.24       2.13 f
+  analysis/mult_590/U836/Y (BUFX4)                        0.38       2.51 f
+  analysis/mult_590/U709/Y (NOR2XL)                       0.45       2.96 r
+  analysis/mult_590/U629/S (ADDFXL)                       0.77       3.74 r
+  analysis/mult_590/U789/S (CMPR42X2)                     0.74       4.48 f
+  analysis/mult_590/U606/Y (NAND2X1)                      0.36       4.84 r
+  analysis/mult_590/U582/Y (CLKINVX1)                     0.31       5.14 f
+  analysis/mult_590/U522/Y (AOI21X1)                      0.36       5.51 r
+  analysis/mult_590/U72/Y (OAI21X4)                       0.23       5.74 f
+  analysis/mult_590/U679/Y (AOI21XL)                      0.41       6.15 r
+  analysis/mult_590/U718/Y (OAI21XL)                      0.27       6.43 f
+  analysis/mult_590/U704/Y (AOI21XL)                      0.45       6.87 r
+  analysis/mult_590/U614/Y (XOR2X1)                       0.45       7.32 r
+  analysis/mult_590/product_30_ (ANA_DW_mult_tc_10)       0.00       7.32 r
+  analysis/add_590/A_30_ (ANA_DW01_add_5)                 0.00       7.32 r
+  analysis/add_590/U495/Y (OR2X1)                         0.50       7.82 r
+  analysis/add_590/U488/Y (NAND2X4)                       0.17       7.99 f
+  analysis/add_590/U445/Y (NOR2XL)                        0.46       8.45 r
+  analysis/add_590/U569/Y (AOI21X2)                       0.23       8.68 f
+  analysis/add_590/U414/Y (XOR2X1)                        0.23       8.91 f
+  analysis/add_590/SUM[31] (ANA_DW01_add_5)               0.00       8.91 f
+  analysis/gt_599/B[31] (ANA_DW_cmp_2)                    0.00       8.91 f
+  analysis/gt_599/U815/Y (INVX1)                          0.34       9.26 r
+  analysis/gt_599/U755/Y (NOR2X4)                         0.15       9.41 f
+  analysis/gt_599/U790/Y (NOR2X1)                         0.27       9.67 r
+  analysis/gt_599/U750/Y (NAND2X2)                        0.15       9.82 f
+  analysis/gt_599/U1/Y (OAI21X4)                          0.17       9.99 r
+  analysis/gt_599/GE_LT_GT_LE (ANA_DW_cmp_2)              0.00       9.99 r
+  analysis/U10/Y (INVX6)                                  0.10      10.09 f
+  analysis/freq[0] (ANA)                                  0.00      10.09 f
+  U1902/Y (CLKINVX12)                                     0.06      10.15 r
+  U1903/Y (CLKINVX20)                                     0.25      10.40 f
+  freq[0] (out)                                           0.00      10.40 f
+  data arrival time                                                 10.40
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.50      10.50
+  clock uncertainty                                      -0.10      10.40
+  output external delay                                   0.00      10.40
+  data required time                                                10.40
+  --------------------------------------------------------------------------
+  data required time                                                10.40
+  data arrival time                                                -10.40
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+
+
+
+ 
+****************************************
+Report : area
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 21:00:00 2018
+****************************************
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+
+Number of ports:                        35759
+Number of nets:                        115201
+Number of cells:                        66292
+Number of combinational cells:          61417
+Number of sequential cells:              4517
+Number of macros/black boxes:               0
+Number of buf/inv:                      16940
+Number of references:                     164
+
+Combinational area:             946191.868067
+Buf/Inv area:                    92584.681849
+Noncombinational area:          200035.191021
+Macro/Black Box area:                0.000000
+Net Interconnect area:         7192256.996399
+
+Total cell area:               1146227.059088
+Total area:                    8338484.055487
+
+
+
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Sat May 12 21:00:09 2018
+****************************************
+
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+FAS                    tsmc13_wl10       slow
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  =  22.0096 mW   (54%)
+  Net Switching Power  =  18.7236 mW   (46%)
+                         ---------
+Total Dynamic Power    =  40.7332 mW  (100%)
+
+Cell Leakage Power     =   1.1609 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register          12.6994            2.1964        1.8808e+08           15.0839  (  36.00%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      9.3101           16.5272        9.7285e+08           26.8101  (  64.00%)
+--------------------------------------------------------------------------------------------------
+Total             22.0096 mW        18.7237 mW     1.1609e+09 pW        41.8940 mW

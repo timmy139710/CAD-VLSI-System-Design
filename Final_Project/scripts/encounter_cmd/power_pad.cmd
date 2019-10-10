@@ -1,0 +1,1 @@
+sroute -connect { padPin } -layerChangeRange { METAL1 METAL8 } -blockPinTarget { nearestTarget } -padPinPortConnect { allPort allGeom } -padPinTarget { nearestTarget } -allowJogging 1 -crossoverViaLayerRange { METAL1 METAL8 } -nets { VDD VSS } -allowLayerChange 1 -targetViaLayerRange { METAL1 METAL8 }

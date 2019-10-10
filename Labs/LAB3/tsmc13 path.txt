@@ -1,0 +1,2 @@
+tsmc13.v path:
+/home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/Verilog/

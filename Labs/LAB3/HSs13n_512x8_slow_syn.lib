@@ -1,0 +1,577 @@
+/*
+ *      CONFIDENTIAL AND PROPRIETARY SOFTWARE/DATA OF ARTISAN COMPONENTS, INC.
+ *      
+ *      Copyright (c) 2011 Artisan Components, Inc.  All Rights Reserved.
+ *      
+ *      Use of this Software/Data is subject to the terms and conditions of
+ *      the applicable license agreement between Artisan Components, Inc. and
+ *      Taiwan Semiconductor Manufacturing Company Ltd..  In addition, this Software/Data
+ *      is protected by copyright law and international treaties.
+ *      
+ *      The copyright notice(s) in this Software/Data does not indicate actual
+ *      or intended publication of this Software/Data.
+ *      name:			SRAM-SP-HS-HC SRAM Generator
+ *           			TSMC CL013G Process
+ *      version:		2004Q2V1
+ *      comment:		
+ *      configuration:	 -instname "HSs13n_512x8" -words 512 -bits 8 -frequency 100 -ring_width 6 -mux 16 -drive 6 -write_mask off -wp_size 8 -redundancy off -redundancy_bits 1 -top_layer met8 -power_type rings -horiz met3 -vert met4 -cust_comment "" -left_bus_delim "[" -right_bus_delim "]" -pwr_gnd_rename "VDD:VDD,GND:VSS" -prefix "" -pin_space 0.0 -name_case upper -check_instname on -diodes on -inside_ring_type GND -fuse_encoding encoded -insert_fuse yes -fusebox_name FUSE -rtl_style mux -libname "HSs13n_512x8"
+ *
+ *      Synopsys model for Synchronous Single-Port Ram
+ *
+ *      Library Name:   HSs13n_512x8
+ *      Instance Name:  HSs13n_512x8
+ *      Words:          512
+ *      Word Width:     8
+ *      Mux:            16
+ *      Pipeline:       No
+ *      Process:        slow
+ *      Delays:		max
+ *
+ *      Creation Date:  2011-09-29 14:31:29Z
+ *      Version:        2004Q2V1
+ *
+ *      Verified With: Synopsys Design Compiler
+ *
+ *      Modeling Assumptions: This library contains a black box description
+ *          for a memory element.  At the library level, a
+ *          default_max_transition constraint is set to the maximum
+ *          characterized input slew.  Each output has a max_capacitance
+ *          constraint set to the highest characterized output load.  These two
+ *          constraints force Design Compiler to synthesize circuits that
+ *          operate within the characterization space.  The user can tighten
+ *          these constraints, if desired.  When writing SDF from Design
+ *          Compiler, use the version 2.1 option.  This ensures the SDF will
+ *          annotate to simulation models provided with this generator.
+ *
+ *      Modeling Limitations: 
+ *          Due to limitations of the .lib format, some data reduction was
+ *          necessary.  When reducing data, minimum values were chosen for the
+ *          fast case corner and maximum values were used for the typical and
+ *          best case corners.  It is recommended that critical timing and
+ *          setup and hold times be checked at all corners.
+ *
+ *      Known Bugs: None.
+ *
+ *      Known Work Arounds: N/A
+ *
+ */
+
+library(HSs13n_512x8) {
+	delay_model		: table_lookup;
+	revision		: 1.1;	
+	date			: "2011-09-29 14:31:29Z";
+	comment			: "Confidential Information of Artisan Components, Inc.  Use subject to Artisan Components license. Copyright (c) 2011 Artisan Components, Inc.";
+	time_unit		: "1ns";
+	voltage_unit		: "1V";
+	current_unit		: "1mA";
+	leakage_power_unit	: "1mW";
+	nom_process		: 1;
+	nom_temperature		: 125.000;
+	nom_voltage		: 1.080;
+	capacitive_load_unit	 (1,pf);
+
+	pulling_resistance_unit	        : "1kohm";
+
+	/* additional header data */
+	default_cell_leakage_power      : 0;
+	default_fanout_load		: 1;
+	default_inout_pin_cap		: 0.005;
+	default_input_pin_cap		: 0.005;
+	default_output_pin_cap		: 0.0;
+	default_max_transition		: 1.500;
+
+        /* default attributes */
+        default_leakage_power_density : 0.0;
+        slew_derate_from_library      : 1;
+        slew_lower_threshold_pct_fall : 10.0;
+        slew_upper_threshold_pct_fall : 90.0;
+        slew_lower_threshold_pct_rise : 10.0;
+        slew_upper_threshold_pct_rise : 90.0;
+        input_threshold_pct_fall      : 50.0;
+        input_threshold_pct_rise      : 50.0;
+        output_threshold_pct_fall     : 50.0;
+        output_threshold_pct_rise     : 50.0;
+
+ 	/* k-factors */
+ 	k_process_cell_fall             : 1;
+ 	k_process_cell_leakage_power    : 0;
+ 	k_process_cell_rise             : 1;
+ 	k_process_fall_transition       : 1;
+ 	k_process_hold_fall             : 1;
+ 	k_process_hold_rise             : 1;
+ 	k_process_internal_power        : 0;
+ 	k_process_min_pulse_width_high  : 1;
+ 	k_process_min_pulse_width_low   : 1;
+ 	k_process_pin_cap               : 0;
+ 	k_process_recovery_fall         : 1;
+ 	k_process_recovery_rise         : 1;
+ 	k_process_rise_transition       : 1;
+ 	k_process_setup_fall            : 1;
+ 	k_process_setup_rise            : 1;
+ 	k_process_wire_cap              : 0;
+ 	k_process_wire_res              : 0;
+	k_temp_cell_fall		: 0.0;
+	k_temp_cell_rise		: 0.0;
+	k_temp_hold_fall                : 0.0;
+	k_temp_hold_rise                : 0.0;
+	k_temp_min_pulse_width_high     : 0.0;
+	k_temp_min_pulse_width_low      : 0.0;
+	k_temp_min_period               : 0.0;
+	k_temp_rise_propagation         : 0.0;
+	k_temp_fall_propagation         : 0.0;
+	k_temp_rise_transition          : 0.0;
+	k_temp_fall_transition          : 0.0;
+	k_temp_recovery_fall            : 0.0;
+	k_temp_recovery_rise            : 0.0;
+	k_temp_setup_fall               : 0.0;
+	k_temp_setup_rise               : 0.0;
+	k_volt_cell_fall                : 0.0;
+	k_volt_cell_rise                : 0.0;
+	k_volt_hold_fall                : 0.0;
+	k_volt_hold_rise                : 0.0;
+	k_volt_min_pulse_width_high     : 0.0;
+	k_volt_min_pulse_width_low      : 0.0;
+	k_volt_min_period               : 0.0;
+	k_volt_rise_propagation         : 0.0;
+	k_volt_fall_propagation         : 0.0;
+	k_volt_rise_transition	        : 0.0;
+	k_volt_fall_transition	        : 0.0;
+	k_volt_recovery_fall            : 0.0;
+	k_volt_recovery_rise            : 0.0;
+	k_volt_setup_fall               : 0.0;
+	k_volt_setup_rise               : 0.0;
+
+
+	operating_conditions(slow) {
+		process	 : 1;
+		temperature	 : 125.000;
+		voltage	 : 1.080;
+		tree_type	 : balanced_tree;
+	}
+        default_operating_conditions : slow;
+	wire_load("sample") {
+		resistance	 : 1.6e-05;
+		capacitance	 : 0.0002;
+		area	 : 1.7;
+  		slope	 : 500;
+		fanout_length	 (1,500);
+	}
+	output_voltage(GENERAL) {
+		vol	 : 0.4;
+		voh	 : VDD - 0.4;
+		vomin	 : -0.5;
+		vomax	 : VDD + 0.5;
+	}
+	input_voltage(CMOS) {
+		vil	 : 0.3 * VDD;
+		vih	 : 0.7 * VDD;
+		vimin	 : -0.5;
+		vimax	 : VDD + 0.5;
+	}
+	input_voltage(TTL) {
+		vil	 : 0.8;
+		vih	 : 2;
+		vimin	 : -0.5;
+		vimax	 : VDD + 0.5;
+	}
+        lu_table_template(HSs13n_512x8_delay_template) {
+           variable_1 : input_net_transition;
+           variable_2 : total_output_net_capacitance;
+               index_1 ("1000, 1001, 1002, 1003, 1004, 1005, 1006");
+               index_2 ("1000, 1001, 1002, 1003, 1004, 1005, 1006");
+        }
+	lu_table_template(HSs13n_512x8_constraint_template) {
+           variable_1 : related_pin_transition;
+           variable_2 : constrained_pin_transition;
+               index_1 ("1000, 1001, 1002, 1003, 1004, 1005, 1006");
+               index_2 ("1000, 1001, 1002, 1003, 1004, 1005, 1006");
+        }
+	lu_table_template(HSs13n_512x8_load_template) {
+           variable_1 : total_output_net_capacitance;
+               index_1 ("1000, 1001, 1002, 1003, 1004, 1005, 1006");
+        }
+        power_lut_template(HSs13n_512x8_passive_energy_template_1x2) {
+           variable_1 : input_transition_time;
+               index_1 ("1000, 1001");
+        }
+	library_features(report_delay_calculation);
+	type (HSs13n_512x8_DATA) {
+		base_type : array ;
+		data_type : bit ;
+		bit_width : 8;
+		bit_from : 7;
+		bit_to : 0 ;
+		downto : true ;
+	}
+	type (HSs13n_512x8_ADDRESS) {
+		base_type : array ;
+		data_type : bit ;
+		bit_width : 9;
+		bit_from : 8;
+		bit_to : 0 ;
+		downto : true ;
+	}
+cell(HSs13n_512x8) {
+	area		 : 46559.420;
+	dont_use	 : TRUE;
+	dont_touch	 : TRUE;
+        interface_timing : TRUE;
+	memory() {
+		type : ram;
+		address_width : 9;
+		word_width : 8;
+	}
+	bus(Q)	 {
+		bus_type : HSs13n_512x8_DATA;
+		direction : output;
+		max_capacitance : 0.495;
+                memory_read() {
+			address : A;
+		}
+		timing() {
+			related_pin :	"CLK" ;
+			timing_type : rising_edge;
+			timing_sense : non_unate;
+			cell_rise(HSs13n_512x8_delay_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.000, 0.010, 0.030, 0.060, 0.160, 0.320, 0.495");
+			values ( \
+			  "1.425, 1.432, 1.446, 1.467, 1.536, 1.647, 1.769", \
+			  "1.427, 1.433, 1.447, 1.468, 1.538, 1.649, 1.771", \
+			  "1.429, 1.436, 1.450, 1.470, 1.540, 1.651, 1.773", \
+			  "1.433, 1.440, 1.454, 1.475, 1.544, 1.656, 1.777", \
+			  "1.446, 1.453, 1.467, 1.488, 1.557, 1.668, 1.790", \
+			  "1.467, 1.474, 1.488, 1.509, 1.579, 1.690, 1.812", \
+			  "1.489, 1.496, 1.510, 1.531, 1.600, 1.711, 1.833" \
+			)
+			}
+			rise_transition(HSs13n_512x8_load_template) {
+			index_1 ("0.000, 0.010, 0.030, 0.060, 0.160, 0.320, 0.495");
+			values ("0.095, 0.111, 0.142, 0.188, 0.343, 0.591, 0.862")
+			}
+			cell_fall(HSs13n_512x8_delay_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.000, 0.010, 0.030, 0.060, 0.160, 0.320, 0.495");
+			values ( \
+			  "1.421, 1.424, 1.431, 1.441, 1.475, 1.529, 1.589", \
+			  "1.422, 1.426, 1.433, 1.443, 1.477, 1.531, 1.591", \
+			  "1.425, 1.428, 1.435, 1.445, 1.479, 1.533, 1.593", \
+			  "1.429, 1.432, 1.439, 1.449, 1.483, 1.538, 1.597", \
+			  "1.442, 1.445, 1.452, 1.462, 1.496, 1.550, 1.610", \
+			  "1.463, 1.467, 1.473, 1.484, 1.518, 1.572, 1.631", \
+			  "1.485, 1.488, 1.495, 1.505, 1.539, 1.593, 1.653" \
+			)
+			}
+			fall_transition(HSs13n_512x8_load_template) {
+			index_1 ("0.000, 0.010, 0.030, 0.060, 0.160, 0.320, 0.495");
+			values ("0.140, 0.146, 0.157, 0.173, 0.228, 0.315, 0.411")
+		}	}
+        }
+
+	pin(CLK) {
+		direction : input;
+		capacitance : 0.083
+		clock	: true;
+		min_pulse_width_low	: 0.887;
+		min_pulse_width_high	: 0.139;
+		min_period		: 1.487;
+		max_transition		: 1.500;
+		internal_power(){
+			when : "!CEN & WEN";
+        		rise_power(HSs13n_512x8_passive_energy_template_1x2) {
+				index_1 ("0.0 1.0");
+            			values ("16.136, 16.136")
+        		}
+        		fall_power(HSs13n_512x8_passive_energy_template_1x2) {
+				index_1 ("0.0 1.0");
+            			values ("0.0, 0.0")
+        		}
+		}
+		internal_power(){
+			when : "!CEN & !WEN";
+			rise_power(HSs13n_512x8_passive_energy_template_1x2) {
+	    			index_1 ("0.0 1.0");
+	    			values ("16.353, 16.353")
+			}	
+			fall_power(HSs13n_512x8_passive_energy_template_1x2) {
+	    			index_1 ("0.0 1.0");
+            			values ("0.0, 0.0")
+			}	
+		}
+         internal_power(){
+                 when : "CEN";
+                 power(HSs13n_512x8_passive_energy_template_1x2) {
+                         index_1 ("0.0 1.0");
+                         values ("0.165, 0.165")
+                 }
+         }
+	}
+
+	pin(CEN) {
+		direction : input;
+		capacitance : 0.004;
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: setup_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "1.143, 1.142, 1.140, 1.136, 1.125, 1.107, 1.088", \
+			  "1.142, 1.140, 1.138, 1.135, 1.124, 1.105, 1.087", \
+			  "1.139, 1.138, 1.136, 1.132, 1.121, 1.103, 1.084", \
+			  "1.135, 1.134, 1.132, 1.128, 1.117, 1.099, 1.080", \
+			  "1.122, 1.121, 1.119, 1.115, 1.104, 1.086, 1.067", \
+			  "1.101, 1.099, 1.098, 1.094, 1.083, 1.064, 1.046", \
+			  "1.079, 1.078, 1.076, 1.072, 1.061, 1.043, 1.024" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "1.156, 1.166, 1.179, 1.204, 1.278, 1.402, 1.527", \
+			  "1.155, 1.165, 1.177, 1.202, 1.276, 1.401, 1.525", \
+			  "1.152, 1.162, 1.175, 1.200, 1.274, 1.399, 1.523", \
+			  "1.148, 1.158, 1.171, 1.195, 1.270, 1.394, 1.519", \
+			  "1.135, 1.145, 1.158, 1.183, 1.257, 1.381, 1.506", \
+			  "1.114, 1.124, 1.136, 1.161, 1.236, 1.360, 1.484", \
+			  "1.092, 1.102, 1.115, 1.140, 1.214, 1.338, 1.463" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: hold_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000" \
+			)
+				
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000" \
+			)
+	}	}	}
+
+	pin(WEN) {
+		direction : input;
+		capacitance : 0.007;
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: setup_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.309, 0.311, 0.314, 0.319, 0.335, 0.362, 0.389", \
+			  "0.307, 0.309, 0.312, 0.317, 0.333, 0.360, 0.387", \
+			  "0.305, 0.307, 0.310, 0.315, 0.331, 0.358, 0.385", \
+			  "0.301, 0.303, 0.305, 0.311, 0.327, 0.354, 0.381", \
+			  "0.288, 0.290, 0.293, 0.298, 0.314, 0.341, 0.368", \
+			  "0.266, 0.268, 0.271, 0.276, 0.293, 0.319, 0.346", \
+			  "0.245, 0.247, 0.250, 0.255, 0.271, 0.298, 0.325" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.098, 0.104, 0.111, 0.124, 0.165, 0.234, 0.302", \
+			  "0.097, 0.102, 0.109, 0.123, 0.164, 0.232, 0.300", \
+			  "0.095, 0.100, 0.107, 0.121, 0.162, 0.230, 0.298", \
+			  "0.090, 0.096, 0.103, 0.116, 0.157, 0.226, 0.294", \
+			  "0.077, 0.083, 0.090, 0.103, 0.144, 0.213, 0.281", \
+			  "0.056, 0.061, 0.068, 0.082, 0.123, 0.191, 0.259", \
+			  "0.034, 0.040, 0.047, 0.060, 0.101, 0.170, 0.238" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK" ;
+			timing_type	: hold_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000" \
+			)
+	}	}	}
+
+	bus(A)  {
+		bus_type : HSs13n_512x8_ADDRESS;
+		direction : input;
+		capacitance : 0.020;
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: setup_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.521, 0.522, 0.524, 0.526, 0.533, 0.546, 0.558", \
+			  "0.520, 0.521, 0.522, 0.524, 0.532, 0.544, 0.556", \
+			  "0.517, 0.518, 0.520, 0.522, 0.529, 0.542, 0.554", \
+			  "0.513, 0.514, 0.515, 0.518, 0.525, 0.538, 0.550", \
+			  "0.500, 0.501, 0.502, 0.505, 0.512, 0.525, 0.537", \
+			  "0.479, 0.480, 0.481, 0.483, 0.491, 0.503, 0.515", \
+			  "0.457, 0.458, 0.460, 0.462, 0.469, 0.482, 0.494" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.275, 0.277, 0.281, 0.287, 0.305, 0.336, 0.367", \
+			  "0.273, 0.276, 0.279, 0.285, 0.303, 0.334, 0.365", \
+			  "0.271, 0.274, 0.277, 0.283, 0.301, 0.332, 0.363", \
+			  "0.267, 0.269, 0.272, 0.279, 0.297, 0.328, 0.359", \
+			  "0.254, 0.256, 0.260, 0.266, 0.284, 0.315, 0.346", \
+			  "0.232, 0.235, 0.238, 0.244, 0.263, 0.294, 0.324", \
+			  "0.211, 0.213, 0.217, 0.223, 0.241, 0.272, 0.303" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: hold_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.013, 0.012, 0.010, 0.008, 0.000, 0.000, 0.000", \
+			  "0.034, 0.033, 0.032, 0.029, 0.022, 0.010, 0.000", \
+			  "0.055, 0.054, 0.053, 0.051, 0.043, 0.031, 0.019" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.020, 0.017, 0.014, 0.008, 0.000, 0.000, 0.000", \
+			  "0.041, 0.039, 0.036, 0.029, 0.011, 0.000, 0.000" \
+			)
+	}	}	
+
+         internal_power(){
+                 when : "CEN";
+                 power(HSs13n_512x8_passive_energy_template_1x2) {
+                         index_1 ("0.0 1.0");
+                         values ("0.271, 0.271")
+                 }
+         }
+
+}
+	bus(D)	 {
+		bus_type : HSs13n_512x8_DATA;
+		direction : input;
+		capacitance : 0.001;
+		memory_write() {
+			address : A;
+			clocked_on : "CLK";
+		}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: setup_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.346, 0.344, 0.340, 0.334, 0.316, 0.286, 0.256", \
+			  "0.344, 0.342, 0.339, 0.333, 0.315, 0.284, 0.254", \
+			  "0.342, 0.340, 0.337, 0.331, 0.312, 0.282, 0.252", \
+			  "0.338, 0.335, 0.332, 0.326, 0.308, 0.278, 0.248", \
+			  "0.325, 0.322, 0.319, 0.313, 0.295, 0.265, 0.235", \
+			  "0.303, 0.301, 0.298, 0.292, 0.274, 0.243, 0.213", \
+			  "0.282, 0.280, 0.277, 0.270, 0.252, 0.222, 0.192" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.092, 0.099, 0.107, 0.125, 0.178, 0.266, 0.355", \
+			  "0.090, 0.097, 0.106, 0.123, 0.176, 0.265, 0.353", \
+			  "0.088, 0.095, 0.104, 0.121, 0.174, 0.262, 0.351", \
+			  "0.083, 0.090, 0.099, 0.117, 0.170, 0.258, 0.346", \
+			  "0.070, 0.078, 0.086, 0.104, 0.157, 0.245, 0.334", \
+			  "0.049, 0.056, 0.065, 0.083, 0.136, 0.224, 0.312", \
+			  "0.028, 0.035, 0.043, 0.061, 0.114, 0.202, 0.291" \
+			)
+		}	}
+		timing() {
+			related_pin	: "CLK"
+			timing_type	: hold_rising ;
+			rise_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.004, 0.034", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.006, 0.036", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.008, 0.038", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.012, 0.042", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.025, 0.055", \
+			  "0.000, 0.000, 0.000, 0.000, 0.016, 0.046, 0.077", \
+			  "0.008, 0.010, 0.013, 0.019, 0.038, 0.068, 0.098" \
+			)
+			}
+			fall_constraint(HSs13n_512x8_constraint_template) {
+			index_1 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			index_2 ("0.010, 0.050, 0.100, 0.200, 0.500, 1.000, 1.500");
+			values ( \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.002, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.006, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000", \
+			  "0.019, 0.012, 0.003, 0.000, 0.000, 0.000, 0.000", \
+			  "0.041, 0.033, 0.025, 0.007, 0.000, 0.000, 0.000", \
+			  "0.062, 0.055, 0.046, 0.028, 0.000, 0.000, 0.000" \
+			)
+		}	}
+	}
+
+	cell_leakage_power : 0.022;
+  }
+}

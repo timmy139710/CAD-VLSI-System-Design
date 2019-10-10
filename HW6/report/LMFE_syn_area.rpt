@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : LMFE
+Version: N-2017.09-SP2
+Date   : Sun Jun 10 21:03:27 2018
+****************************************
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+    sram_1024x8_t13 (File: /home/raid7_2/userb03/b03095/CVSD/HW6_ref/Memory/sram_1024x8_t13/sram_1024x8_t13_slow_syn.db)
+
+Number of ports:                          754
+Number of nets:                          4191
+Number of cells:                         2845
+Number of combinational cells:           2074
+Number of sequential cells:               718
+Number of macros/black boxes:               1
+Number of buf/inv:                        371
+Number of references:                     128
+
+Combinational area:              18735.901210
+Buf/Inv area:                     1800.941380
+Noncombinational area:           23237.405247
+Macro/Black Box area:            69557.296875
+Net Interconnect area:          390695.345673
+
+Total cell area:                111530.603332
+Total area:                     502225.949004
+1

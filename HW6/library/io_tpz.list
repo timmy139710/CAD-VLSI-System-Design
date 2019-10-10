@@ -1,0 +1,173 @@
+#
+#   Artisan tsmc .13 IO pad list
+#   For addbonding_tpz.pl v1.1
+#
+Inner_Bond_Name         PADIZ40
+Outer_Bond_Name         PADOZ40
+
+#                       Inner/Outer
+South_Left_Start        Inner
+North_Left_Start        Inner
+West_Down_Start         Inner
+East_Down_Start         Inner
+
+IO_Pad_Length           246000
+
+PADIZ40_Length          88800
+PADIZ40_Width           69000
+PADIZ40_Offset          0
+PADOZ40_Length          203800
+PADOZ40_Width           69000
+PADOZ40_Offset          0
+
+PADIZ45_Length          88800
+PADIZ45_Width           69000
+PADIZ45_Offset          0
+PADOZ45_Length          203800
+PADOZ45_Width           69000
+PADOZ45_Offset          0 
+
+PADLZ60_Length          80000
+PADLZ60_Width           57000
+PADLZ60_Offset          0
+
+PADLZ85_Length          89000
+PADLZ85_Width           79000
+PADLZ85_Offset          0 
+
+Secend_Pin_Offset       40000
+# Secend_Pin_Offset is needed when adding bonding pads for a double size IO Pad,
+# It defines where to place the secned bonding Pad. This value is usually the 
+# half of the width of a double width IO Pad.
+#
+#      ! 40000 !
+#      |--===--+--===--|
+#      |  pin1    pin2 |
+#      |               |
+#      |               |
+#      |               |
+
+#Name       width   pin_location
+PCI33DGZ    1       1
+PCI33SDGZ   1       1
+PCI66DGZ    1       1
+PCI66SDGZ   1       1
+PDB02DGZ    1       1
+PDB02SDGZ   1       1
+PDB04DGZ    1       1
+PDB04SDGZ   1       1
+PDB08DGZ    1       1
+PDB08SDGZ   1       1
+PDB12DGZ    1       1
+PDB12SDGZ   1       1
+PDB16DGZ    1       1
+PDB16SDGZ   1       1
+PDB24DGZ    1       1
+PDB24SDGZ   1       1
+PDD02DGZ    1       1
+PDD02SDGZ   1       1
+PDD04DGZ    1       1
+PDD04SDGZ   1       1
+PDD08DGZ    1       1
+PDD08SDGZ   1       1
+PDD12DGZ    1       1
+PDD12SDGZ   1       1
+PDD16DGZ    1       1
+PDD16SDGZ   1       1
+PDD24DGZ    1       1
+PDD24SDGZ   1       1
+PDDDGZ      1       1
+PDDSDGZ     1       1
+PDDW02DGZ   1       1
+PDDW04DGZ   1       1
+PDDW08DGZ   1       1
+PDDW12DGZ   1       1
+PDDW16DGZ   1       1
+PDDW24DGZ   1       1
+PDDWDGZ     1       1
+PDIDGZ      1       1
+PDISDGZ     1       1
+PDO02CDG    1       1
+PDO04CDG    1       1
+PDO08CDG    1       1
+PDO12CDG    1       1
+PDO16CDG    1       1
+PDO24CDG    1       1
+PDT02DGZ    1       1
+PDT04DGZ    1       1
+PDT08DGZ    1       1
+PDT12DGZ    1       1
+PDT16DGZ    1       1
+PDT24DGZ    1       1
+PDU02DGZ    1       1
+PDU02SDGZ   1       1
+PDU04DGZ    1       1
+PDU04SDGZ   1       1
+PDU08DGZ    1       1
+PDU08SDGZ   1       1
+PDU12DGZ    1       1
+PDU12SDGZ   1       1
+PDU16DGZ    1       1
+PDU16SDGZ   1       1
+PDU24DGZ    1       1
+PDU24SDGZ   1       1
+PDUDGZ      1       1
+PDUSDGZ     1       1
+PDUW02DGZ   1       1
+PDUW04DGZ   1       1
+PDUW08DGZ   1       1
+PDUW12DGZ   1       1
+PDUW16DGZ   1       1
+PDUW24DGZ   1       1
+PDUWDGZ     1       1
+PDXO01DG    2       11
+PDXO02DG    2       11
+PDXO03DG    2       11
+PDXOE1DG    2       11
+PDXOE2DG    2       11
+PDXOE3DG    2       11
+PRB08DGZ    1       1
+PRB08SDGZ   1       1
+PRB12DGZ    1       1
+PRB12SDGZ   1       1
+PRB16DGZ    1       1
+PRB16SDGZ   1       1
+PRB24DGZ    1       1
+PRB24SDGZ   1       1
+PRD08DGZ    1       1
+PRD08SDGZ   1       1
+PRD12DGZ    1       1
+PRD12SDGZ   1       1
+PRD16DGZ    1       1
+PRD16SDGZ   1       1
+PRD24DGZ    1       1
+PRD24SDGZ   1       1
+PRDW08DGZ   1       1
+PRDW12DGZ   1       1
+PRDW16DGZ   1       1
+PRDW24DGZ   1       1
+PRO08CDG    1       1
+PRO12CDG    1       1
+PRO16CDG    1       1
+PRO24CDG    1       1
+PRT08DGZ    1       1
+PRT12DGZ    1       1
+PRT16DGZ    1       1
+PRT24DGZ    1       1
+PRU08DGZ    1       1
+PRU08SDGZ   1       1
+PRU12DGZ    1       1
+PRU12SDGZ   1       1
+PRU16DGZ    1       1
+PRU16SDGZ   1       1
+PRU24DGZ    1       1
+PRU24SDGZ   1       1
+PRUW08DGZ   1       1
+PRUW12DGZ   1       1
+PRUW16DGZ   1       1
+PRUW24DGZ   1       1
+PVDD1DGZ    1       1
+PVDD2DGZ    1       1
+PVSS1DGZ    1       1
+PVSS2DGZ    1       1
+PVSS3DGZ    1       1

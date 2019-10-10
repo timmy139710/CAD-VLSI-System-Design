@@ -1,0 +1,15 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_rc_corner -name RC_corner -cap_table {library/tsmc013.capTbl} -preRoute_res {1.0} -preRoute_cap {1.0} -preRoute_clkres {0.0} -preRoute_clkcap {0.0} -postRoute_res {1.0} -postRoute_cap {1.0} -postRoute_xcap {1.0} -postRoute_clkres {0.0} -postRoute_clkcap {0.0} -qx_tech_file {library/tsmc13_8lm.cl/icecaps_8lm.tch}
+create_library_set -name lib_max -timing {library/lib/slow.lib library/lib/sram_1024x8_t13_slow_syn.lib library/lib/tpz013g3wc.lib} -si {library/celtic/slow.cdB}
+create_library_set -name lib_min -timing {library/lib/fast.lib library/lib/sram_1024x8_t13_slow_syn.lib library/lib/tpz013g3lt.lib} -si {library/celtic/fast.cdB}
+create_constraint_mode -name func_mode -sdc_files {design_data/LMFE_DC.sdc}
+create_constraint_mode -name scan_mode -sdc_files {design_data/CHIP_scan_ideal.sdc}
+create_delay_corner -name Delay_Corner_max -library_set {lib_max} -rc_corner {RC_corner}
+create_delay_corner -name Delay_Corner_min -library_set {lib_min} -rc_corner {RC_corner}
+create_analysis_view -name av_func_mode_max -constraint_mode {func_mode} -delay_corner {Delay_Corner_max}
+create_analysis_view -name av_func_mode_min -constraint_mode {func_mode} -delay_corner {Delay_Corner_min}
+create_analysis_view -name av_scan_mode_max -constraint_mode {scan_mode} -delay_corner {Delay_Corner_max}
+create_analysis_view -name av_scan_mode_min -constraint_mode {scan_mode} -delay_corner {Delay_Corner_min}
+set_analysis_view -setup {av_func_mode_max av_scan_mode_max} -hold {av_func_mode_min av_scan_mode_min}
+set_analysis_view -setup {av_func_mode_max} -hold {av_func_mode_min}
