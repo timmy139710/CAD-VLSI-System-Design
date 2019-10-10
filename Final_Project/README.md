@@ -10,21 +10,21 @@ Design a digital photo album which supports the following features:
 
 ### Block Diagram:  
 1. System block diagram:
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_2.png alt="block" width=500 height=300>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_2.png alt="block" width=500 height=300>  
  
 2. Transition Effect:  
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_4.png alt="tran" width=256 height=256>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_4.png alt="tran" width=256 height=256>  
 
 3. Display photo and time in digital photo album:  
 <p align="left">
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_1.png alt="p1" width=256 height=256>
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_3.png alt="p2" width=256 height=256>
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_1.png alt="p1" width=256 height=256>
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_3.png alt="p2" width=256 height=256>
 </p>
 
 <p class="left">
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_5.png alt="p3" width=256 height=256>
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_6.png alt="p4" width=256 height=256>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_5.png alt="p3" width=256 height=256>
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_6.png alt="p4" width=256 height=256>  
 </p>
 
 ### Layout:  
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/final_layout.png alt="block" width=500 height=500>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/final_floorplan.png alt="block" width=500 height=500>  

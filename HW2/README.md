@@ -8,8 +8,8 @@ Design a Frequency Analysis System, including
 
 ### Block Diagrams:  
 1. Overall block diagram:
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/hw2.png alt="hw2_1" width=550 height=250>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/hw2.png alt="hw2_1" width=550 height=250>  
 2. Butterfly architecture of 16-pts FFT (decimation in frequency):
-<img src=https://github.com/02stevenyang850527/CVSD/blob/master/pics/hw2_2.png alt="hw2_2" width=550 height=250>  
+<img src=https://github.com/timmy139710/CAD-VLSI-System-Design/blob/master/pics/hw2_2.png alt="hw2_2" width=550 height=250>  
 
 
