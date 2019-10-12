@@ -15,5 +15,5 @@ EEE 5022, Spring 2017, National Taiwan University (NTU)
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW3_ST
 4. System Verilog Assertions for Formal Verification  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW5_ST
-5. Digital Photo Album  (Final Project)
+5. Digital Photo Album  (Final Project)  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/Final_Project
