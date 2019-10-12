@@ -7,13 +7,13 @@ EEE 5022, Spring 2017, National Taiwan University (NTU)
 3. Homeworks and Final Projects related to RTL coding (Verilog) are available on this repo.
 
 ### Homework related to RTL coding:
-1. ALU and Signed Extension
+1. ALU and Signed Extension  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW1
-2. Frequency Analysis System
+2. Frequency Analysis System  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW2
-3. Local Median Filter Engine
+3. Local Median Filter Engine  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW3_ST
-4. System Verilog Assertions for Formal Verification
+4. System Verilog Assertions for Formal Verification  
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/HW5_ST
-5. Digital Photo Album
+5. Digital Photo Album  (Final Project)
    https://github.com/timmy139710/CAD-VLSI-System-Design/tree/master/Final_Project
